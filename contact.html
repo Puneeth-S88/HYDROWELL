@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style>
+      .chat-icon {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    width: 65px;
+    height: 65px;
+    background: #007bff;
+    color: white;
+    font-size: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    z-index: 9999;
+}
+.chat-icon:hover { transform: scale(1.1); }
+.bot-box {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 340px;
+    max-height: 500px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    padding: 20px;
+    display: none;
+    overflow-y: auto;
+    z-index: 9999;
+}
+.bot-box h3 { text-align: center; margin-bottom: 15px; color: #222; }
+.bot-box button {
+    width: 100%; padding: 12px; margin-bottom: 10px; border: none;
+    border-radius: 8px; background: #f1f1f1; cursor: pointer;
+    text-align: left; font-size: 14px; transition: 0.3s;
+}
+.bot-box button:hover { background: #007bff; color: white; }
+#answer-box {
+    margin-top: 15px; padding: 15px; background: #eef6ff;
+    border-left: 4px solid #007bff; border-radius: 8px;
+    font-size: 14px; line-height: 1.6; color: #333;
+}
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Sri Anantashayana Borewells & Pumps</title>
+    <meta name="description" content="Contact Sri Anantashayana Borewells & Pumps for Borewell Drilling, Pump Installation and Casing Pipe Services in Bengaluru and Karnataka." />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+      .contact-section { background: var(--cream); }
+      .contact-intro { text-align: center; margin-bottom: 52px; }
+      .contact-intro .section-label,
+      .contact-intro .section-title { display: block; text-align: center; }
+      .contact-intro p { color: var(--text-mid); font-size: 1rem; margin-top: 8px; }
+      .quick-contact-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 52px; }
+      .qc-card {
+        background: var(--white); border-radius: var(--radius-md); padding: 28px 20px;
+        text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+        border-top: 3px solid var(--teal); transition: transform var(--transition), box-shadow var(--transition);
+        text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 10px;
+      }
+      .qc-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+      .qc-card .qc-icon {
+        width: 52px; height: 52px; border-radius: 50%; background: var(--teal-light);
+        display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--teal);
+      }
+      .qc-card.whatsapp-card .qc-icon { background: #e7faf0; color: #25d366; }
+      .qc-card h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); font-family: var(--font-body); font-weight: 600; }
+      .qc-card p { font-size: 1rem; font-weight: 700; color: var(--teal); margin: 0; }
+      .qc-card span { font-size: 0.82rem; color: var(--text-light); }
+      .contact-form label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 6px; letter-spacing: 0.03em; }
+      .contact-form .field { display: flex; flex-direction: column; }
+      .contact-form form { gap: 20px; }
+      .map-section { background: var(--cream-dark); }
+      .map-section .section-label,
+      .map-section .section-title { text-align: center; display: block; }
+      @media (max-width: 768px) { .quick-contact-strip { grid-template-columns: 1fr; } }
+      @media (max-width: 480px) { .quick-contact-strip { grid-template-columns: 1fr; } }
+
+      /* Success message */
+      #form-success {
+        display: none;
+        background: #e7faf0;
+        border: 1px solid #25d366;
+        border-radius: 8px;
+        padding: 16px 20px;
+        color: #0f6e56;
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- HEADER -->
+    <header id="main-header">
+      <div class="header-inner">
+        <div class="logo-area">
+          <img src="logo.jpeg" alt="Sri Anantashayana Borewells" />
+          <div class="logo-text">
+            <h1>Sri Anantashayana Borewells & Pumps</h1>
+            <p>25+ Years of Trusted Service</p>
+          </div>
+        </div>
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li>
+              <a href="ratings.html">
+                Ratings <span class="rating-badge">⭐ 4.9/5</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Chat Icon -->
+        <div class="chat-icon" onclick="toggleBot()">🤖</div>
+
+        <!-- Chatbot -->
+        <div class="bot-box" id="botBox">
+          <h3>Ask About Borewell</h3>
+          <button onclick="showAnswer(1)">1. Borewell drilling cost?</button>
+          <button onclick="showAnswer(2)">2. Pump installation charges?</button>
+          <button onclick="showAnswer(3)">3. Service areas?</button>
+          <button onclick="showAnswer(4)">4. 24/7 service?</button>
+          <button onclick="showAnswer(5)">5. How deep do you drill?</button>
+          <button onclick="showAnswer(6)">6. Do you provide casing pipes?</button>
+          <button onclick="showAnswer(7)">7. Which pumps do you install?</button>
+          <button onclick="showAnswer(8)">8. How long does drilling take?</button>
+          <button onclick="showAnswer(9)">9. Water guarantee available?</button>
+          <button onclick="showAnswer(10)">10. Contact number?</button>
+          <div id="answer-box"></div>
+        </div>
+
+        <div class="lang-box">
+          <select id="languageSelector">
+            <option value="">🌐 Language</option>
+            <option value="en">English</option>
+            <option value="kn">Kannada</option>
+            <option value="hi">Hindi</option>
+            <option value="te">Telugu</option>
+            <option value="ta">Tamil</option>
+            <option value="ml">Malayalam</option>
+          </select>
+        </div>
+
+        <a href="tel:+919880701789" class="header-cta"><i class="fas fa-phone"></i> Call Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- PAGE BANNER -->
+    <section class="page-banner">
+      <h2>Contact Us</h2>
+      <p>We're Available 24 Hours — Call, WhatsApp or Send an Enquiry</p>
+    </section>
+
+    <!-- TOP BAR -->
+    <section class="top-bar">
+      <div class="top-bar-inner">
+        <a href="tel:+919880701789"><i class="fas fa-phone"></i> +91 98807 01789</a>
+        <span class="divider">|</span>
+        <span><i class="fas fa-location-dot"></i> Anjananagar, Magadi Main Road, Bengaluru - 560091</span>
+        <span class="divider">|</span>
+        <span><i class="fas fa-clock"></i> Open 24 Hours</span>
+      </div>
+    </section>
+
+    <!-- Contact Form + Info Panel -->
+    <div class="contact-container">
+      <!-- INFO PANEL -->
+      <div class="contact-info reveal-left">
+        <h2>Contact Information</h2>
+        <p>
+          <i class="fas fa-phone"></i>
+          <span><strong style="color: white">Phone:</strong><br />+91 98807 01789</span>
+        </p>
+        <p>
+          <i class="fab fa-whatsapp"></i>
+          <span><strong style="color: white">WhatsApp:</strong><br />+91 98807 01789</span>
+        </p>
+        <p>
+          <i class="fas fa-map-marker-alt"></i>
+          <span><strong style="color: white">Address:</strong><br />
+            Anjananagar,<br />Magadi Main Road,<br />
+            Near Bindu Amulya Apartment,<br />
+            Vishwaneedam Post,<br />Bengaluru - 560091</span>
+        </p>
+        <p>
+          <i class="fas fa-clock"></i>
+          <span><strong style="color: white">Working Hours:</strong><br />24 Hours Service Available</span>
+        </p>
+        <a href="tel:+919880701789" class="btn" style="margin-top:10px;width:100%;justify-content:center;background:white;color:var(--teal);font-weight:700;">
+          <i class="fas fa-phone"></i> Call Now
+        </a>
+        <a href="https://wa.me/919880701789" target="_blank" class="btn" style="margin-top:10px;width:100%;justify-content:center;background:#25d366;color:white;font-weight:700;border:none;">
+          <i class="fab fa-whatsapp"></i> WhatsApp Us
+        </a>
+      </div>
+
+      <!-- FORM — pure HTML + JS, no PHP -->
+      <div class="contact-form reveal-right">
+        <h2>Send Enquiry</h2>
+        <p style="color:var(--text-mid);font-size:0.92rem;margin-bottom:24px;">
+          Fill in your details and requirement — we'll get back to you promptly.
+        </p>
+
+        <div id="form-success">
+          ✅ Enquiry sent! Redirecting you to WhatsApp to complete the message…
+        </div>
+
+        <!-- Changed: id added, action/method removed — JS handles submit -->
+        <form id="enquiry-form" novalidate>
+          <div class="field">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+          </div>
+          <div class="field">
+            <label for="phone">Mobile Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your mobile number" required />
+          </div>
+          <div class="field">
+            <label for="location">Your Location</label>
+            <input type="text" id="location" name="location" placeholder="e.g. Rajajinagar, Bengaluru" />
+          </div>
+          <div class="field">
+            <label for="message">Your Requirement *</label>
+            <textarea id="message" name="message" rows="6"
+              placeholder="Tell us your requirement — borewell drilling, filter pipes, pump installation, etc."
+              required></textarea>
+          </div>
+          <button type="submit">
+            <i class="fab fa-whatsapp" style="margin-right:8px"></i>Submit & WhatsApp Us
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- CONTACT FORM + INFO -->
+    <section class="section contact-section">
+      <div class="container">
+        <div class="contact-intro reveal">
+          <div class="section-label">Get In Touch</div>
+          <h2 class="section-title">We're Here to Help</h2>
+          <p>Call, WhatsApp or fill the form below — our team responds quickly.</p>
+        </div>
+
+        <!-- Quick Contact Strip -->
+        <div class="quick-contact-strip">
+          <a href="tel:+919880701789" class="qc-card reveal-up">
+            <div class="qc-icon"><i class="fas fa-phone"></i></div>
+            <h4>Phone</h4>
+            <p>+91 98807 01789</p>
+            <span>Call us anytime</span>
+          </a>
+          <a href="https://wa.me/919880701789" target="_blank" class="qc-card whatsapp-card reveal-up" style="animation-delay:0.1s">
+            <div class="qc-icon"><i class="fab fa-whatsapp"></i></div>
+            <h4>WhatsApp</h4>
+            <p>+91 98807 01789</p>
+            <span>Message us on WhatsApp</span>
+          </a>
+          <div class="qc-card reveal-up" style="animation-delay:0.2s">
+            <div class="qc-icon"><i class="fas fa-clock"></i></div>
+            <h4>Working Hours</h4>
+            <p>24 Hours</p>
+            <span>Available every day</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADDRESS / LOCATION -->
+    <section class="section map-section">
+      <div class="container">
+        <div class="section-label">Find Us</div>
+        <h2 class="section-title">Our Location</h2>
+        <div class="address-box reveal-up" style="margin-top:32px">
+          <h3>Sri Anantashayana Borewells & Pumps</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Anjananagar, Magadi Main Road,<br />
+            Near Bindu Amulya Apartment,<br />Vishwaneedam Post,<br />Bengaluru - 560091</p>
+          <p><i class="fas fa-phone"></i> +91 98807 01789</p>
+          <p><i class="fas fa-clock"></i> Open 24 Hours</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <h3>Sri Anantashayana Borewells & Pumps</h3>
+          <p>Professional Borewell Drilling & Water Solutions across Bengaluru and Karnataka.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="ratings.html">Ratings <span class="rating-badge">⭐ 4.9/5</span></a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="services.html">Borewell Drilling</a></li>
+            <li><a href="services.html">Casing Pipe Installation</a></li>
+            <li><a href="services.html">Pump Installation</a></li>
+            <li><a href="services.html">Pump Maintenance</a></li>
+            <li><a href="services.html">Filter Pipes</a></li>
+            <li><a href="services.html">Agricultural Borewells</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Information</h4>
+          <p><i class="fas fa-phone"></i> +91 98807 01789</p>
+          <p><i class="fab fa-whatsapp"></i> +91 98807 01789</p>
+          <p><i class="fas fa-map-marker-alt"></i> Anjananagar, Magadi Main Road, Near Bindu Amulya Apartment, Vishwaneedam Post, Bengaluru - 560091</p>
+          <p><i class="fas fa-clock"></i> Open 24 Hours</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Sri Anantashayana Borewells & Pumps. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- WHATSAPP -->
+    <a class="whatsapp" href="https://wa.me/919880701789" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <!-- CALL -->
+    <a class="call-btn" href="tel:+919880701789" aria-label="Call"><i class="fas fa-phone"></i></a>
+    <!-- GOOGLE MAPS -->
+    <a class="maps-btn" href="https://maps.app.goo.gl/B3EnX8a8e8juFonf7" target="_blank" aria-label="Find Us"><i class="fas fa-location-dot"></i></a>
+
+    <script>
+      /* ── Header / nav ── */
+      const hamburger = document.getElementById("hamburger");
+      const navMenu   = document.getElementById("nav-menu");
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        navMenu.classList.toggle("open");
+      });
+      window.addEventListener("scroll", () => {
+        document.getElementById("main-header").classList.toggle("scrolled", window.scrollY > 50);
+      });
+      const observer = new IntersectionObserver(
+        (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("in-view"); }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal, .reveal-up, .reveal-left, .reveal-right").forEach(el => observer.observe(el));
+
+      /* ── ENQUIRY FORM — WhatsApp redirect (replaces contact.php) ── */
+      document.getElementById("enquiry-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name     = document.getElementById("name").value.trim();
+        const phone    = document.getElementById("phone").value.trim();
+        const location = document.getElementById("location").value.trim();
+        const message  = document.getElementById("message").value.trim();
+
+        /* Basic validation */
+        if (!name || !phone || !message) {
+          alert("Please fill in Name, Mobile Number and Requirement before submitting.");
+          return;
+        }
+
+        const whatsappNumber = "919880701789";
+
+        const text = `NEW BOREWELL ENQUIRY
+
+Name: ${name}
+
+Phone: ${phone}
+
+Location: ${location || "Not provided"}
+
+Requirement:
+${message}`;
+
+        /* Show success banner briefly, then redirect */
+        document.getElementById("form-success").style.display = "block";
+
+        setTimeout(() => {
+          window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+        }, 1200);
+      });
+
+      /* ── Chatbot ── */
+      function toggleBot() {
+        const bot = document.getElementById("botBox");
+        bot.style.display = bot.style.display === "block" ? "none" : "block";
+      }
+
+      function showAnswer(num) {
+        const answers = {
+          1:  "Borewell drilling cost depends on depth, soil condition, and location.",
+          2:  "Pump installation charges depend on motor type and borewell depth.",
+          3:  "We serve Karnataka, Tamil Nadu, and nearby areas.",
+          4:  "Yes, we provide 24/7 borewell service support.",
+          5:  "We drill from 100 feet to 1500+ feet based on requirement.",
+          6:  "Yes, we provide PVC and HDPE casing pipes.",
+          7:  "We install submersible, compressor, and motor pumps.",
+          8:  "Drilling usually takes 1–2 days depending on depth.",
+          9:  "Water availability depends on underground geology.",
+          10: "Call us at +91 98807 01789."
+        };
+        document.getElementById("answer-box").innerHTML = answers[num] || "";
+        const box = document.getElementById("botBox");
+        box.scrollTop = box.scrollHeight;
+      }
+
+      /* ── Google Translate ── */
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en", includedLanguages: "en,kn,hi,te,ta,ml" },
+          "google_translate_element"
+        );
+      }
+      document.getElementById("languageSelector").addEventListener("change", function () {
+        const combo = document.querySelector(".goog-te-combo");
+        if (combo) { combo.value = this.value; combo.dispatchEvent(new Event("change")); }
+      });
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </body>
+</html>

@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style>
+      .chat-icon {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    width: 65px;
+    height: 65px;
+    background: #007bff;
+    color: white;
+    font-size: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    z-index: 9999;
+}
+
+.chat-icon:hover {
+    transform: scale(1.1);
+}
+
+.bot-box {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 340px;
+    max-height: 500px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    padding: 20px;
+    display: none; /* hidden initially */
+    overflow-y: auto;
+    z-index: 9999;
+}
+
+.bot-box h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.bot-box button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #f1f1f1;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.bot-box button:hover {
+    background: #007bff;
+    color: white;
+}
+
+#answer-box {
+    margin-top: 15px;
+    padding: 15px;
+    background: #eef6ff;
+    border-left: 4px solid #007bff;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+}
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Sri Anantashayana Borewells & Pumps</title>
+    <meta
+      name="description"
+      content="View our borewell drilling projects, filter pipe installations, casing pipe installations and pump installation works completed across Bengaluru and Karnataka."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      /* Gallery page lightbox-style grid */
+      .gallery-page-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .gallery-page-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-md);
+        aspect-ratio: 4/3;
+        box-shadow: var(--shadow-sm);
+        cursor: pointer;
+      }
+      .gallery-page-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        display: block;
+      }
+      .gallery-page-item:hover img {
+        transform: scale(1.08);
+      }
+      .gallery-page-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 60, 60, 0.75) 0%,
+          transparent 60%
+        );
+        display: flex;
+        align-items: flex-end;
+        padding: 18px;
+        opacity: 0;
+        transition: opacity var(--transition);
+      }
+      .gallery-page-item:hover .gallery-page-overlay {
+        opacity: 1;
+      }
+      .gallery-page-overlay span {
+        color: white;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* Stats row */
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 0;
+      }
+      .stat-block {
+        background: var(--white);
+        border-radius: var(--radius-md);
+        padding: 36px 20px;
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border);
+        border-top: 4px solid var(--teal);
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+      }
+      .stat-block:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-md);
+      }
+      .stat-block .num {
+        font-family: var(--font-head);
+        font-size: 3.2rem;
+        color: var(--teal);
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+      .stat-block p {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-mid);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      @media (max-width: 600px) {
+        .stats-row {
+          grid-template-columns: 1fr;
+        }
+        .gallery-page-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+      }
+      @media (max-width: 420px) {
+        .gallery-page-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element" style="display:none;"></div>
+   
+
+    <!-- HEADER -->
+    <header id="main-header">
+      <div class="header-inner">
+        <div class="logo-area">
+          <img src="logo.jpeg" alt="Sri Anantashayana Borewells" />
+          <div class="logo-text">
+            <h1>Sri Anantashayana Borewells & Pumps</h1>
+            <p>25+ Years of Trusted Service</p>
+          </div>
+        </div>
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+<li>
+              <a href="ratings.html">
+                Ratings <span class="rating-badge">⭐ 4.9/5</span>
+              </a>
+            </li>    
+          <!-- Chat Icon -->
+<div class="chat-icon" onclick="toggleBot()">
+    🤖
+</div>
+
+<!-- Chatbot -->
+<div class="bot-box" id="botBox">
+    <h3>Ask About Borewell</h3>
+
+    <button onclick="showAnswer(1)">1. Borewell drilling cost?</button>
+    <button onclick="showAnswer(2)">2. Pump installation charges?</button>
+    <button onclick="showAnswer(3)">3. Service areas?</button>
+    <button onclick="showAnswer(4)">4. 24/7 service?</button>
+    <button onclick="showAnswer(5)">5. How deep do you drill?</button>
+    <button onclick="showAnswer(6)">6. Do you provide casing pipes?</button>
+    <button onclick="showAnswer(7)">7. Which pumps do you install?</button>
+    <button onclick="showAnswer(8)">8. How long does drilling take?</button>
+    <button onclick="showAnswer(9)">9. Water guarantee available?</button>
+    <button onclick="showAnswer(10)">10. Contact number?</button>
+
+    <div id="answer-box"></div>
+</div>  
+<div class="lang-box">
+    <select id="languageSelector">
+        <option value="">🌐 Language</option>
+        <option value="en">English</option>
+        <option value="kn">Kannada</option>
+        <option value="hi">Hindi</option>
+        <option value="te">Telugu</option>
+        <option value="ta">Tamil</option>
+        <option value="ml">Malayalam</option>
+    </select>
+</div>    </ul>
+        </nav>
+        <a href="tel:+919880701789" class="header-cta"
+          ><i class="fas fa-phone"></i> Call Now</a
+        >
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      
+    </header>
+
+    <!-- PAGE BANNER -->
+    <section class="page-banner">
+      <h2>Project Gallery</h2>
+      <p>Showcasing Successful Borewell Projects Across Karnataka</p>
+    </section>
+     <!-- TOP BAR -->
+    <section class="top-bar">
+      <div class="top-bar-inner">
+        <a href="tel:+919880701789"
+          ><i class="fas fa-phone"></i> +91 98807 01789</a
+        >
+        <span class="divider">|</span>
+        <span
+          ><i class="fas fa-location-dot"></i> Anjananagar, Magadi Main Road,
+          Bengaluru - 560091</span
+        >
+        <span class="divider">|</span>
+        <span><i class="fas fa-clock"></i> Open 24 Hours</span>
+      </div>
+    </section>
+
+    <!-- STATS ROW -->
+    <section
+      class="section"
+      style="
+        background: var(--cream-dark);
+        padding-top: 50px;
+        padding-bottom: 50px;
+      "
+    >
+      <div class="container">
+        <div class="stats-row">
+          <div class="stat-block reveal-up">
+            <div class="num">25+</div>
+            <p>Years Experience</p>
+          </div>
+          <div class="stat-block reveal-up" style="animation-delay: 0.1s">
+            <div class="num">1000+</div>
+            <p>Projects Completed</p>
+          </div>
+          <div class="stat-block reveal-up" style="animation-delay: 0.2s">
+            <div class="num">24/7</div>
+            <p>Customer Support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY GRID -->
+    <section class="section" style="background: var(--white)">
+      <div class="container">
+        <div class="section-label">Our Work</div>
+        <h2 class="section-title">Recent Works</h2>
+        <p class="section-sub">
+          A look at some of the borewell drilling, filter pipe installation,
+          pump installation and casing pipe projects we have completed across
+          Bengaluru and Karnataka.
+        </p>
+        <div class="gallery-page-grid">
+          <div class="gallery-page-item reveal-up">
+            <img src="bore1.jfif" alt="Borewell Project 1" />
+            <div class="gallery-page-overlay">
+              <span>Borewell Project</span>
+            </div>
+          </div>
+          <div
+            class="gallery-page-item reveal-up"
+            style="animation-delay: 0.06s"
+          >
+            <img src="bore2.jfif" alt="Borewell Project 2" />
+            <div class="gallery-page-overlay">
+              <span>Borewell Project</span>
+            </div>
+          </div>
+          <div
+            class="gallery-page-item reveal-up"
+            style="animation-delay: 0.12s"
+          >
+            <img src="drill1.jpeg" alt="Borewell Project 3" />
+            <div class="gallery-page-overlay">
+              <span>Drilling works</span>
+            </div>
+          </div>
+          <div
+            class="gallery-page-item reveal-up"
+            style="animation-delay: 0.18s"
+          >
+            <img src="drill2.jpeg" alt="Borewell Drilling" />
+            <div class="gallery-page-overlay"><span>Drilling Works</span></div>
+          </div>
+          <div
+            class="gallery-page-item reveal-up"
+            style="animation-delay: 0.24s"
+          >
+            <img src="casing2.jpeg" alt="Casing Pipe Installation" />
+            <div class="gallery-page-overlay">
+              <span>Casing Pipe Installation</span>
+            </div>
+          </div>
+          <div
+            class="gallery-page-item reveal-up"
+            style="animation-delay: 0.3s"
+          >
+            <img src="pump.jpg" alt="Pump Installation" />
+            <div class="gallery-page-overlay">
+              <span>Pump Installation</span>
+            </div>
+          </div>
+          <div
+            class="gallery-page-item reveal-up"
+            style="animation-delay: 0.33s"
+          >
+            <img src="filter.jpeg" alt="Filter Pipes Installation" />
+            <div class="gallery-page-overlay">
+              <span>Filter Pipes</span>
+            </div>
+          </div>
+          <div
+            class="gallery-page-item reveal-up"
+            style="animation-delay: 0.36s"
+          >
+            <img src="commercial.jfif" alt="Commercial Borewell" />
+            <div class="gallery-page-overlay">
+              <span>Commercial Project</span>
+            </div>
+          </div>
+          <div
+            class="gallery-page-item reveal-up"
+            style="animation-delay: 0.42s"
+          >
+            <img src="agricultural.jfif" alt="Agricultural Borewell" />
+            <div class="gallery-page-overlay">
+              <span>Agricultural Project</span>
+            </div>
+          </div>
+          <div
+            class="gallery-page-item reveal-up"
+            style="animation-delay: 0.48s"
+          >
+            <img src="residential.jfif" alt="Residential Borewell" />
+            <div class="gallery-page-overlay">
+              <span>Residential Project</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE DELIVER -->
+    <section class="section why-us">
+      <div class="container">
+        <div class="section-label light">Scope of Work</div>
+        <h2 class="section-title light">What We Deliver</h2>
+        <div class="why-grid">
+          <div class="why-box reveal-up">
+            <i class="fas fa-hammer"></i><span>Borewell Drilling</span>
+          </div>
+          <div class="why-box reveal-up" style="animation-delay: 0.05s">
+            <i class="fas fa-water"></i><span>Pump Installation</span>
+          </div>
+          <div class="why-box reveal-up" style="animation-delay: 0.1s">
+            <i class="fas fa-pipe-section"></i><span>Casing Pipe Works</span>
+          </div>
+          <div class="why-box reveal-up" style="animation-delay: 0.12s">
+            <i class="fas fa-filter"></i><span>Filter Pipe Installation</span>
+          </div>
+          <div class="why-box reveal-up" style="animation-delay: 0.15s">
+            <i class="fas fa-tractor"></i><span>Agricultural Projects</span>
+          </div>
+          <div class="why-box reveal-up" style="animation-delay: 0.2s">
+            <i class="fas fa-home"></i><span>Residential Projects</span>
+          </div>
+          <div class="why-box reveal-up" style="animation-delay: 0.25s">
+            <i class="fas fa-building"></i><span>Commercial Projects</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <h2>Looking for Borewell Services?</h2>
+      <p>
+        Call us today for borewell drilling, filter pipe installation and quick
+        assistance.
+      </p>
+      <a href="tel:+919880701789" class="btn btn-white"
+        ><i class="fas fa-phone"></i> Call Now</a
+      >
+      <a href="contact.html" class="btn btn-outline" style="margin-left: 10px"
+        >Get Free Quote</a
+      >
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <h3>Sri Anantashayana Borewells & Pumps</h3>
+          <p>
+            Professional Borewell Drilling, Filter Pipe Installation & Water
+            Solutions across Bengaluru and Karnataka.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="services.html">Borewell Drilling</a></li>
+            <li><a href="services.html">Casing Pipe Installation</a></li>
+            <li><a href="services.html">Pump Installation</a></li>
+            <li><a href="services.html">Pump Maintenance</a></li>
+            <li><a href="services.html">Filter Pipes</a></li>
+            <li><a href="services.html">Agricultural Borewells</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Information</h4>
+          <p><i class="fas fa-phone"></i> +91 9880701789</p>
+          <p><i class="fab fa-whatsapp"></i> +91 9880701789</p>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> Anjananagar, Magadi Main Road,
+            Near Bindu Amulya Apartment, Vishwaneedam Post, Bengaluru - 560091
+          </p>
+          <p><i class="fas fa-clock"></i> Open 24 Hours</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Sri Anantashayana Borewells & Pumps. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <a
+      class="whatsapp"
+      href="https://wa.me/919880701789"
+      target="_blank"
+      aria-label="WhatsApp"
+      ><i class="fab fa-whatsapp"></i
+    ></a>
+    <a class="call-btn" href="tel:+919880701789" aria-label="Call"
+      ><i class="fas fa-phone"></i
+    ></a>
+    <!-- GOOGLE MAPS BUTTON -->
+<a class="maps-btn" href="https://maps.app.goo.gl/B3EnX8a8e8juFonf7" target="_blank" aria-label="Find Us">
+    <i class="fas fa-location-dot"></i>
+</a>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("nav-menu");
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        navMenu.classList.toggle("open");
+      });
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("main-header")
+          .classList.toggle("scrolled", window.scrollY > 50);
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("in-view");
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll(".reveal, .reveal-up, .reveal-left, .reveal-right")
+        .forEach((el) => observer.observe(el));
+    </script>
+    <script>
+
+  
+    function toggleBot() {
+    const bot = document.getElementById("botBox");
+
+    if (bot.style.display === "block") {
+        bot.style.display = "none";
+    } else {
+        bot.style.display = "block";
+    }
+}
+
+function showAnswer(num) {
+    let answer = "";
+
+    switch(num) {
+        case 1:
+            answer = "Borewell drilling cost depends on depth, soil condition, and location.";
+            break;
+        case 2:
+            answer = "Pump installation charges depend on motor type and borewell depth.";
+            break;
+        case 3:
+            answer = "We serve Karnataka, Tamil Nadu, and nearby areas.";
+            break;
+        case 4:
+            answer = "Yes, we provide 24/7 borewell service support.";
+            break;
+        case 5:
+            answer = "We drill from 100 feet to 1500+ feet based on requirement.";
+            break;
+        case 6:
+            answer = "Yes, we provide PVC and HDPE casing pipes.";
+            break;
+        case 7:
+            answer = "We install submersible, compressor, and motor pumps.";
+            break;
+        case 8:
+            answer = "Drilling usually takes 1–2 days depending on depth.";
+            break;
+        case 9:
+            answer = "Water availability depends on underground geology.";
+            break;
+        case 10:
+            answer = "Call us at +91 98807 01789.";
+            break;
+    }
+
+    document.getElementById("answer-box").innerHTML = answer;
+    let botBox = document.getElementById("botBox");
+botBox.scrollTop = botBox.scrollHeight;
+}
+    </script>
+    <script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,kn,hi,te,ta,ml'
+        },
+        'google_translate_element'
+    );
+}
+
+document.getElementById("languageSelector").addEventListener("change", function () {
+    var lang = this.value;
+    var combo = document.querySelector(".goog-te-combo");
+
+    if (combo) {
+        combo.value = lang;
+        combo.dispatchEvent(new Event("change"));
+    }
+});
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </body>
+</html>
