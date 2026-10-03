@@ -77,17 +77,30 @@ function get_db_connection() {
     $pass = env_get('DB_PASSWORD', '');
     $name = env_get('DB_NAME', 'borewell_db');
     $port = (int) env_get('DB_PORT', 3306);
+    $use_ssl = (strtolower(env_get('DB_SSL', 'false')) === 'true') || ($port === 4000) || (strpos($host, 'tidbcloud.com') !== false);
 
     mysqli_report(MYSQLI_REPORT_OFF);
-    $conn = @new mysqli($host, $user, $pass, $name, $port);
 
-    if ($conn->connect_error) {
-        error_log("HYDROWELL DB Connection Failed: " . $conn->connect_error);
+    if ($use_ssl) {
+        $conn = mysqli_init();
+        // Initialize SSL flags for cloud databases (TiDB Cloud, Aiven, AWS RDS, etc.)
+        $conn->ssl_set(NULL, NULL, NULL, NULL, NULL);
+        $conn->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, false);
+        $connected = @$conn->real_connect($host, $user, $pass, $name, $port, NULL, MYSQLI_CLIENT_SSL);
+    } else {
+        $conn = @new mysqli($host, $user, $pass, $name, $port);
+        $connected = !$conn->connect_error;
+    }
+
+    if (!$connected || $conn->connect_error) {
+        $err = $conn->connect_error ?? mysqli_connect_error();
+        error_log("HYDROWELL DB Connection Failed: " . $err);
         http_response_code(500);
         echo json_encode([
             "success" => false,
             "message" => "Database connection unavailable. Please check database server.",
-            "error_code" => "DB_CONNECT_FAILED"
+            "error_code" => "DB_CONNECT_FAILED",
+            "details" => (env_get('APP_ENV', 'production') === 'development') ? $err : null
         ]);
         exit();
     }

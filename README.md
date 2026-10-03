@@ -167,15 +167,34 @@ You will receive a JSON response confirming database connectivity and table coun
 
 ---
 
-## 🌐 Production Deployment
+## 🌐 24/7 Cloud Deployment (No Laptop or XAMPP Required)
 
-The backend is built using standard cloud-ready PHP PDO/mysqli patterns with environment variable isolation:
+The backend and database can run 24/7/365 completely free in the cloud without needing your personal laptop or XAMPP:
 
-1. **Database Migration**: Import `database/schema.sql` into your hosted MySQL server (e.g., Hostinger, AWS RDS, DigitalOcean, PlanetScale, cPanel).
-2. **Environment Configuration**: Set production credentials in `.env` (or cloud platform environment variables).
-3. **Domain Binding**:
-   * Custom Domain: `www.anantashayanaborewells88.com`
-   * Point DNS `A` records to your web server IP or `CNAME` to your host.
+### 1. Free Cloud MySQL Database (TiDB Cloud Serverless)
+1. Go to [https://tidbcloud.com](https://tidbcloud.com) and click **"Continue with GitHub"** using your GitHub account.
+2. Click **Create Cluster** (Free Serverless tier — 5 GB storage, 50M queries/month free forever, no credit card required).
+3. Open the built-in **SQL Editor** tab, paste the contents of [`database/schema.sql`](file:///c:/Users/Comp/OneDrive/Desktop/ASB%21%21%21/database/schema.sql), and click **Run**.
+4. In the **Connect** tab, copy your `DB_HOST`, `DB_PORT` (4000), `DB_USER`, and `DB_PASSWORD`.
+
+### 2. Deploy Backend (Option A: Render Web Service)
+1. Go to [https://render.com](https://render.com) and sign in with GitHub.
+2. Click **New +** > **Web Service**, select `Puneeth-S88/HYDROWELL`.
+3. Render will auto-detect the `Dockerfile` or `render.yaml`.
+4. In the **Environment Variables** section, add:
+   * `DB_HOST`: your cloud database host
+   * `DB_PORT`: `4000` (or 3306)
+   * `DB_USER`: your cloud database username
+   * `DB_PASSWORD`: your cloud database password
+   * `DB_NAME`: `borewell_db` (or cluster DB name)
+   * `DB_SSL`: `true`
+5. Click **Deploy Web Service**. Your backend is now live 24/7!
+
+### 3. Deploy Backend (Option B: Vercel)
+1. Go to [https://vercel.com](https://vercel.com) and click **Add New Project**.
+2. Import `Puneeth-S88/HYDROWELL`.
+3. Add the same database environment variables in Project Settings.
+4. Click **Deploy**.
 
 ---
 

@@ -9,13 +9,16 @@
 let currentFeedbackList = [];
 let activeRatingFilter = 0;
 
-// API Endpoints (Auto-detects localhost vs GitHub Pages cloud tunnel to MySQL)
+// API Endpoints (Auto-detects localhost, Render, Vercel, custom domain, vs GitHub Pages)
 const API_BASE = (function() {
   const host = window.location.hostname;
-  if (host === 'localhost' || host === '127.0.0.1') {
+  if (host === 'localhost' || host === '127.0.0.1' || host.includes('render.com') || host.includes('vercel.app') || host.includes('anantashayanaborewells88.com')) {
     return 'api';
   }
-  // Connects GitHub Pages directly to live Cloudflare-tunneled MySQL backend
+  if (window.HYDROWELL_API_URL) {
+    return window.HYDROWELL_API_URL;
+  }
+  // Connects GitHub Pages directly to live cloud backend
   return 'https://courage-views-negotiations-forth.trycloudflare.com/api';
 })();
 

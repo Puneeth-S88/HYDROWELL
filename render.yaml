@@ -1,0 +1,30 @@
+# ==============================================================================
+# HYDROWELL - Render Cloud Deployment Blueprint
+# 24/7 Free Web Service
+# ==============================================================================
+services:
+  - type: web
+    name: hydrowell-backend
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 3306
+      - key: DB_NAME
+        value: borewell_db
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSL
+        value: true
+      - key: APP_ENV
+        value: production
+      - key: WHATSAPP_RECIPIENT_1
+        value: 919880701789
+      - key: WHATSAPP_RECIPIENT_2
+        value: 919380410134
