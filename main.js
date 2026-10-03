@@ -19,7 +19,7 @@ const API_BASE = (function() {
     return window.HYDROWELL_API_URL;
   }
   // Connects GitHub Pages directly to live Cloudflare-tunneled MySQL backend
-  return 'https://joshua-motherboard-chemical-ozone.trycloudflare.com/api';
+  return 'https://sprint-dublin-save-usr.trycloudflare.com/api';
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
