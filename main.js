@@ -9,10 +9,14 @@
 let currentFeedbackList = [];
 let activeRatingFilter = 0;
 
-// API Endpoints (relative for seamless localhost and production hosting)
+// API Endpoints (Auto-detects localhost vs GitHub Pages cloud tunnel to MySQL)
 const API_BASE = (function() {
-  // If hosted in a subfolder or root, auto-resolve /api/
-  return 'api';
+  const host = window.location.hostname;
+  if (host === 'localhost' || host === '127.0.0.1') {
+    return 'api';
+  }
+  // Connects GitHub Pages directly to live Cloudflare-tunneled MySQL backend
+  return 'https://courage-views-negotiations-forth.trycloudflare.com/api';
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -100,6 +104,11 @@ async function initFeedbackSystem() {
 
   // Load reviews from persistent database
   await loadFeedback();
+
+  // Real-time synchronization polling (keeps mobile & laptop in sync in real time)
+  setInterval(() => {
+    loadFeedback(true);
+  }, 4000);
 
   // Handle rating filter buttons
   filterPills.forEach(pill => {
@@ -239,7 +248,7 @@ const INITIAL_DATABASE_REVIEWS = [
   }
 ];
 
-async function loadFeedback() {
+async function loadFeedback(silent = false) {
   const reviewsContainer = document.getElementById('reviews-list');
   if (!reviewsContainer) return;
 
@@ -248,18 +257,24 @@ async function loadFeedback() {
     if (res.ok) {
       const data = await res.json();
       if (data.success && Array.isArray(data.data) && data.data.length > 0) {
-        currentFeedbackList = data.data;
-        updateFeedbackMetrics(data.stats);
-        renderReviews();
+        const currentIds = currentFeedbackList.map(r => r.id).join(',');
+        const newIds = data.data.map(r => r.id).join(',');
+        if (currentIds !== newIds || currentFeedbackList.length === 0) {
+          currentFeedbackList = data.data;
+          updateFeedbackMetrics(data.stats);
+          renderReviews();
+        }
         return;
       }
     }
     throw new Error('API returned empty or non-200');
   } catch (err) {
-    // Graceful fallback: Load verified real database reviews
-    currentFeedbackList = [...INITIAL_DATABASE_REVIEWS];
-    recalculateMetrics();
-    renderReviews();
+    if (!silent) {
+      // Graceful fallback: Load verified real database reviews
+      currentFeedbackList = [...INITIAL_DATABASE_REVIEWS];
+      recalculateMetrics();
+      renderReviews();
+    }
   }
 }
 
