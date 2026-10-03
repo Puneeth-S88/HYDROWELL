@@ -202,6 +202,11 @@ async function initFeedbackSystem() {
           photo: null,
           date_formatted: 'Just now'
         };
+        try {
+          const saved = JSON.parse(localStorage.getItem('hydrowell_user_reviews') || '[]');
+          saved.unshift(localReview);
+          localStorage.setItem('hydrowell_user_reviews', JSON.stringify(saved));
+        } catch (e) {}
         currentFeedbackList.unshift(localReview);
         recalculateMetrics();
         renderReviews();
@@ -273,8 +278,14 @@ async function loadFeedback(silent = false) {
     throw new Error('API returned empty or non-200');
   } catch (err) {
     if (!silent) {
-      // Graceful fallback: Load verified real database reviews
-      currentFeedbackList = [...INITIAL_DATABASE_REVIEWS];
+      // Graceful fallback: Load verified real database reviews merged with user's stored reviews
+      let localSaved = [];
+      try {
+        localSaved = JSON.parse(localStorage.getItem('hydrowell_user_reviews') || '[]');
+      } catch (e) {}
+      const existingIds = new Set(INITIAL_DATABASE_REVIEWS.map(r => r.id));
+      const newItems = Array.isArray(localSaved) ? localSaved.filter(r => !existingIds.has(r.id)) : [];
+      currentFeedbackList = [...newItems, ...INITIAL_DATABASE_REVIEWS];
       recalculateMetrics();
       renderReviews();
     }
