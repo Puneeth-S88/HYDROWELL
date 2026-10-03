@@ -1,537 +1,209 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <style>
-      .chat-icon {
-    position: fixed;
-    top: 10px;
-    right: 20px;
-    width: 65px;
-    height: 65px;
-    background: #007bff;
-    color: white;
-    font-size: 30px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-    z-index: 9999;
-}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Sri Anantashayana Borewells & Pumps (HYDROWELL)</title>
+  <meta name="description" content="Learn about Sri Anantashayana Borewells & Pumps (HYDROWELL) - over 25 years of trusted borewell drilling, casing pipe, and pump installation in Bengaluru and Karnataka." />
+  
+  <link rel="icon" type="image/jpeg" href="logo.jpeg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-.chat-icon:hover {
-    transform: scale(1.1);
-}
+<body>
+  <!-- TOP BAR -->
+  <aside class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-info">
+        <span class="top-bar-item"><i class="fas fa-phone-alt"></i> <a href="tel:+919880701789" class="top-bar-link">+91 98807 01789</a></span>
+        <span class="top-bar-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919380410134" target="_blank" class="top-bar-link">+91 93804 10134</a></span>
+        <span class="top-bar-item"><i class="fas fa-map-marker-alt"></i> <span>Anjananagar, Magadi Main Road, Bengaluru - 560091</span></span>
+        <span class="top-bar-item"><i class="fas fa-clock"></i> <span>Open 24 Hours</span></span>
+      </div>
+      <div class="top-bar-cta">
+        <a href="index.html#booking" class="top-bar-link"><i class="fas fa-calendar-check"></i> Book Online</a>
+      </div>
+    </div>
+  </aside>
 
-.bot-box {
-    position: fixed;
-    bottom: 100px;
-    right: 25px;
-    width: 340px;
-    max-height: 500px;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-    padding: 20px;
-    display: none; /* hidden initially */
-    overflow-y: auto;
-    z-index: 9999;
-}
-
-.bot-box h3 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #222;
-}
-
-.bot-box button {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #f1f1f1;
-    cursor: pointer;
-    text-align: left;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.bot-box button:hover {
-    background: #007bff;
-    color: white;
-}
-
-#answer-box {
-    margin-top: 15px;
-    padding: 15px;
-    background: #eef6ff;
-    border-left: 4px solid #007bff;
-    border-radius: 8px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333;
-}
-    </style>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us | Sri Anantashayana Borewells & Pumps</title>
-    <meta
-      name="description"
-      content="Learn more about Sri Anantashayana Borewells & Pumps, trusted borewell drilling experts in Bengaluru with 25+ years of experience."
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-  </head>
-
-  <body>
-    <div id="google_translate_element" style="display:none;"></div>
-    <!-- TOP BAR -->
-    
-
-    <!-- HEADER -->
-    <header id="main-header">
-      <div class="header-inner">
-        <div class="logo-area">
-          <img src="logo.jpeg" alt="Sri Anantashayana Borewells" />
-          <div class="logo-text">
-            <h1>Sri Anantashayana Borewells & Pumps</h1>
-            <p>25+ Years of Trusted Service</p>
-          </div>
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.jpeg" alt="HYDROWELL Logo" width="48" height="48" />
+        <div class="brand-name">
+          <span class="brand-title">HYDRO<span>WELL</span></span>
+          <span class="brand-subtitle">Sri Anantashayana Borewells</span>
         </div>
-        <nav>
-          <ul id="nav-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="contact.html">Contact</a></li>
-<li>
-              <a href="ratings.html">
-                Ratings <span class="rating-badge">⭐ 4.9/5</span>
-              </a>
-            </li> 
-          <!-- Chat Icon -->
-<div class="chat-icon" onclick="toggleBot()">
-    🤖
-</div>
+      </a>
 
-<!-- Chatbot -->
-<div class="bot-box" id="botBox">
-    <h3>Ask About Borewell</h3>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="index.html#process" class="nav-link">Process</a></li>
+          <li><a href="index.html#booking" class="nav-link">Booking</a></li>
+          <li><a href="ratings.html" class="nav-link">Reviews <span class="nav-rating-badge" id="nav-rating-badge">⭐ 4.7/5</span></a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
 
-    <button onclick="showAnswer(1)">1. Borewell drilling cost?</button>
-    <button onclick="showAnswer(2)">2. Pump installation charges?</button>
-    <button onclick="showAnswer(3)">3. Service areas?</button>
-    <button onclick="showAnswer(4)">4. 24/7 service?</button>
-    <button onclick="showAnswer(5)">5. How deep do you drill?</button>
-    <button onclick="showAnswer(6)">6. Do you provide casing pipes?</button>
-    <button onclick="showAnswer(7)">7. Which pumps do you install?</button>
-    <button onclick="showAnswer(8)">8. How long does drilling take?</button>
-    <button onclick="showAnswer(9)">9. Water guarantee available?</button>
-    <button onclick="showAnswer(10)">10. Contact number?</button>
-
-    <div id="answer-box"></div>
-</div>      
-<div class="lang-box">
-    <select id="languageSelector">
-        <option value="">🌐 Language</option>
-        <option value="en">English</option>
-        <option value="kn">Kannada</option>
-        <option value="hi">Hindi</option>
-        <option value="te">Telugu</option>
-        <option value="ta">Tamil</option>
-        <option value="ml">Malayalam</option>
-    </select>
-</div>   </ul>
-        </nav>
-        <a href="tel:+919880701789" class="header-cta"
-          ><i class="fas fa-phone"></i> Call Now</a
-        >
+      <div class="nav-actions">
+        <a href="index.html#booking" class="btn btn-primary btn-sm">
+          <i class="fas fa-wrench"></i> Book Service
+        </a>
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- PAGE BANNER -->
-    <section class="page-banner">
-      <h2>About Us</h2>
-      <p>
-        25+ Years of Delivering Reliable Groundwater Solutions Across Karnataka
+  <!-- PAGE HEADER -->
+  <section class="section" style="background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%); padding: 50px 0;">
+    <div class="container" style="text-align: center;">
+      <span class="section-badge">Company History & Engineering Legacy</span>
+      <h1 style="margin-bottom: 12px;">About Sri Anantashayana Borewells & Pumps</h1>
+      <p style="max-width: 700px; margin: 0 auto; color: var(--secondary-dark); font-size: 1.05rem;">
+        Providing dependable water access through certified geological survey, advanced hydraulic drilling, and submersible motor solutions since 2000.
       </p>
-    </section>
-    <section class="top-bar">
-      <div class="top-bar-inner">
-        <a href="tel:+919880701789"
-          ><i class="fas fa-phone"></i> +91 98807 01789</a
-        >
-        <span class="divider">|</span>
-        <span
-          ><i class="fas fa-location-dot"></i> Anjananagar, Magadi Main Road,
-          Bengaluru - 560091</span
-        >
-        <span class="divider">|</span>
-        <span><i class="fas fa-clock"></i> Open 24 Hours</span>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- WHO WE ARE -->
-    <section class="section about-preview">
-      <div class="container about-grid">
-        <div class="about-image reveal-left">
-          <img src="establish.png" alt="About Borewell Services" />
-          <div class="about-badge"><span>Est.</span><strong>2000</strong></div>
+  <!-- ABOUT DETAILED CONTENT -->
+  <section class="section section-alt">
+    <div class="container about-grid">
+      <div class="about-media">
+        <div class="about-img-box">
+          <img src="establish.png" alt="Establishment of Sri Anantashayana Borewells" />
         </div>
-        <div class="about-text reveal-right">
-          <div class="section-label">Who We Are</div>
-          <h2 class="section-title">Sri Anantashayana Borewells & Pumps</h2>
-          <p>
-            Sri Anantashayana Borewells & Pumps is a trusted name in borewell
-            drilling and water solution services across Bengaluru and Karnataka.
-            With more than 25 years of experience, we have successfully
-            completed residential, commercial and agricultural borewell
-            projects.
-          </p>
-          <p>
-            Every project is handled with careful planning, advanced drilling
-            equipment and skilled technicians to deliver efficient borewell
-            solutions that are built for long-term performance and customer
-            satisfaction.
-          </p>
-          <ul class="about-list">
-            <li>
-              <i class="fas fa-check-circle"></i> Geologist-Assisted Borewell
-              Point Identification
-            </li>
-            <li>
-              <i class="fas fa-check-circle"></i> Complete Borewell Drilling
-              Solutions
-            </li>
-            <li>
-              <i class="fas fa-check-circle"></i> Casing Pipe & Submersible
-              Motor Installation
-            </li>
-            <li>
-  <i class="fas fa-check-circle"></i> Filter Pipe Installation
-</li>
-            <li>
-              <i class="fas fa-check-circle"></i> Trusted Service Across
-              Karnataka
-            </li>
-          </ul>
+        <div class="about-experience-badge">
+          <div class="badge-years">25+</div>
+          <div class="badge-title">Years of Reliability</div>
         </div>
       </div>
-    </section>
 
-    <!-- MISSION -->
-    <section class="section mission-vision-section">
-      <div class="container">
-        <div class="mv-grid">
-          <div class="mv-card reveal-up">
-            <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
-            <h3>Our Mission</h3>
-            <p>
-              Our mission is to help customers obtain reliable groundwater
-              access through scientific borewell point selection, professional
-              drilling practices and quality installation services that deliver
-              lasting results.
-            </p>
-          </div>
-          <div class="mv-card reveal-up" style="animation-delay: 0.12s">
-            <div class="mv-icon"><i class="fas fa-eye"></i></div>
-            <h3>Our Vision</h3>
-            <p>
-              To be Karnataka's preferred borewell partner by combining
-              experience, technology and customer-focused service to create
-              sustainable water solutions for future generations.
-            </p>
-          </div>
-          <div class="mv-card reveal-up" style="animation-delay: 0.24s">
-            <div class="mv-icon"><i class="fas fa-handshake"></i></div>
-            <h3>Our Values</h3>
-            <p>
-              We believe in honesty, commitment and quality workmanship. From
-              site inspection to final motor installation, every project is
-              completed with transparency and professional care.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+      <div class="about-content">
+        <span class="section-badge">Our Legacy</span>
+        <h2>25+ Years of Certified Groundwater Excellence</h2>
+        <p class="about-lead">
+          Sri Anantashayana Borewells & Pumps (HYDROWELL) was established with a singular mission: to eliminate water uncertainty through rigorous engineering and transparent customer service.
+        </p>
+        <p>
+          Over the past 25 years, we have drilled and serviced more than 1,000 borewells across Karnataka. From densely built residential neighborhoods in Bengaluru to vast agricultural tracts in Mandya, Tumakuru, and Ramanagara, our team delivers consistent water yield with minimum environmental disruption.
+        </p>
 
-    <!-- WHY CHOOSE US -->
-    <section class="section why-us">
-      <div class="container">
-        <div class="section-label light">Our Advantage</div>
-        <h2 class="section-title light">Why Customers Trust Us</h2>
-        <div class="why-grid">
-          <div class="why-box reveal-up">
-            <i class="fas fa-medal"></i><span>25+ Years of Experience</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.05s">
-            <i class="fas fa-users"></i><span>Skilled & Experienced Team</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.1s">
-            <i class="fas fa-cogs"></i><span>Modern Drilling Equipment</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.15s">
-            <i class="fas fa-tags"></i><span>Affordable Pricing</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.2s">
-            <i class="fas fa-clock"></i><span>Timely Project Completion</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.25s">
-            <i class="fas fa-map-marked-alt"></i
-            ><span>Service Across Karnataka</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STRENGTHS / CARDS -->
-    <section class="section services-home" style="background: var(--cream)">
-      <div class="container">
-        <div class="section-label">What Sets Us Apart</div>
-        <h2 class="section-title">Our Strengths</h2>
-        <div class="cards">
-          <div class="card reveal-up">
-            <div class="card-img-wrap">
-              <img src="drilling2.png" alt="Drilling" />
-              <div class="card-icon"><i class="fas fa-hammer"></i></div>
-            </div>
-            <div class="card-body">
-              <h3>Professional Drilling</h3>
-              <p>
-                Precise drilling operations supported by expert assessment and
-                modern equipment for improved project success and dependable
-                water access.
-              </p>
+        <div class="about-features" style="margin-top: 24px;">
+          <div class="about-feature-item">
+            <div class="feature-icon-box"><i class="fas fa-check"></i></div>
+            <div class="feature-text">
+              <h4>Senior Hydrogeologist Point Marking</h4>
+              <p>We do not drill blindly. Every point is verified via subsurface resistivity measurements to identify aquifer fractures.</p>
             </div>
           </div>
-          <div class="card reveal-up" style="animation-delay: 0.1s">
-            <div class="card-img-wrap">
-              <img src="casing2.jpeg" alt="Casing Pipes" />
-              <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-            </div>
-            <div class="card-body">
-              <h3>Quality Materials</h3>
-              <p>
-                Strong and reliable casing pipe installations that help protect
-                the borewell structure and improve long-term durability.
-              </p>
+          <div class="about-feature-item">
+            <div class="feature-icon-box"><i class="fas fa-check"></i></div>
+            <div class="feature-text">
+              <h4>Class-D Casing & Filter Protection</h4>
+              <p>We install certified high-tensile casing pipes and slotted filter screens to stop cave-ins and silt intrusion.</p>
             </div>
           </div>
-          <div class="card reveal-up" style="animation-delay: 0.2s">
-            <div class="card-img-wrap">
-              <img src="suppourt.webp" alt="Pump Installation" />
-              <div class="card-icon"><i class="fas fa-headset"></i></div>
-            </div>
-            <div class="card-body">
-              <h3>Reliable Support</h3>
-              <p>
-                Guidance before, during and after project completion to ensure
-                customers receive dependable and efficient water solutions.
-              </p>
+          <div class="about-feature-item">
+            <div class="feature-icon-box"><i class="fas fa-check"></i></div>
+            <div class="feature-text">
+              <h4>Complete Submersible Motor Systems</h4>
+              <p>Authorized installers of Texmo, CRI, and Kirloskar submersible pumps, complete with electrical starter panels and cables.</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA -->
-    <section class="cta">
-      <h2>Ready To Start Your Borewell Project?</h2>
-      <p>
-        Contact our team today for borewell point identification, drilling,
-casing pipe installation, filter pipe installation and motor fitting services.
-      </p>
-      <a href="tel:+9198807 01789" class="btn btn-white"
-        ><i class="fas fa-phone"></i> Call Now</a
-      >
-    </section>
+  <!-- EQUIPMENT FLEET SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Machinery & Capabilities</span>
+        <h2 class="section-title">Our Modern Rig Fleet & Equipment</h2>
+        <p class="section-desc">Advanced high-pressure hydraulic rigs engineered for rapid penetration through hard rock and complex geological formations.</p>
+      </div>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-inner">
+      <div class="services-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-truck-monster"></i></div>
+          <h3>Heavy Hydraulic Drill Rigs</h3>
+          <p>Equipped with high-volume air compressors capable of drilling up to 1,500+ feet in 4½" and 6½" bore diameters.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-microchip"></i></div>
+          <h3>Scientific Geophysical Meters</h3>
+          <p>Digital resistivity meters and underground water locators that map subsurface rock resistivity and water vein depths.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+          <h3>Compressor Flushing Units</h3>
+          <p>High CFM air compressors specifically deployed for clearing choked borewells, silt removal, and borehole yield testing.</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="index.html#booking" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
+        <a href="contact.html" class="btn btn-dark" style="margin-left: 12px;"><i class="fas fa-phone-alt"></i> Contact Engineering Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
         <div class="footer-brand">
-          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
-          <h3>Sri Anantashayana Borewells & Pumps</h3>
-          <p>
-            Providing geologist-guided borewell point marking, drilling, casing pipe installation, filter pipe installation and pump solutions across Bengaluru and Karnataka.
-          </p>
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+            <img src="logo.jpeg" alt="HYDROWELL" style="width:40px; height:40px; border-radius:6px;" />
+            <h3 style="margin:0;">HYDROWELL</h3>
+          </div>
+          <p>Sri Anantashayana Borewells & Pumps has provided certified borewell drilling, casing pipe fitting, filter screens, and submersible pump installation across Bengaluru and Karnataka for over 25 years.</p>
         </div>
         <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li>
-              <a href="ratings.html">
-                Ratings <span class="rating-badge">⭐ 4.9/5</span>
-              </a>
-            </li>
-          </ul>
+          <h4>Navigation</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About HYDROWELL</a>
+            <a href="services.html">All Services</a>
+            <a href="index.html#booking">Book a Service</a>
+            <a href="ratings.html">Customer Reviews</a>
+            <a href="gallery.html">Project Gallery</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
         </div>
         <div class="footer-col">
           <h4>Our Services</h4>
-          <ul>
-            <li><a href="services.html">Borewell Drilling</a></li>
-            <li><a href="services.html">Casing Pipe Installation</a></li>
-            <li><a href="services.html">Pump Installation</a></li>
-            <li><a href="services.html">Pump Maintenance</a></li>
-            <li><a href="services.html">Filter Pipes</a></li>
-            <li><a href="services.html">Agricultural Borewells</a></li>
-          </ul>
+          <div class="footer-links">
+            <a href="services.html">Borewell Drilling</a>
+            <a href="services.html">Casing Pipe Installation</a>
+            <a href="services.html">Submersible Pump Fitting</a>
+            <a href="services.html">Filter Pipes</a>
+            <a href="services.html">Compressor Flushing</a>
+          </div>
         </div>
         <div class="footer-col">
-          <h4>Contact Information</h4>
-          <p><i class="fas fa-phone"></i> +91 9880701789</p>
-          <p><i class="fab fa-whatsapp"></i> +91 9880701789</p>
-          <p>
-            <i class="fas fa-map-marker-alt"></i> Anjananagar, Magadi Main Road,
-            Near Bindu Amulya Apartment, Vishwaneedam Post, Bengaluru - 560091
-          </p>
-          <p><i class="fas fa-clock"></i> Open 24 Hours</p>
+          <h4>Contact & WhatsApp</h4>
+          <p><i class="fas fa-phone-alt"></i> +91 98807 01789</p>
+          <p><i class="fab fa-whatsapp"></i> +91 98807 01789</p>
+          <p><i class="fab fa-whatsapp"></i> +91 93804 10134</p>
+          <p><i class="fas fa-map-marker-alt"></i> Anjananagar, Magadi Main Road, Bengaluru - 560091</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Sri Anantashayana Borewells & Pumps. All Rights Reserved.</p>
+        <p>© 2000–2026 Sri Anantashayana Borewells & Pumps (HYDROWELL). All Rights Reserved.</p>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <!-- WHATSAPP -->
-    <a
-      class="whatsapp"
-      href="https://wa.me/919880701789"
-      target="_blank"
-      aria-label="WhatsApp"
-    >
-      <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- CALL -->
-    <a class="call-btn" href="tel:+919880701789" aria-label="Call">
-      <i class="fas fa-phone"></i>
-    </a>
-    <!-- GOOGLE MAPS BUTTON -->
-<a class="maps-btn" href="https://maps.app.goo.gl/B3EnX8a8e8juFonf7" target="_blank" aria-label="Find Us">
-    <i class="fas fa-location-dot"></i>
-</a>
-
-    <script>
-      const hamburger = document.getElementById("hamburger");
-      const navMenu = document.getElementById("nav-menu");
-      hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("open");
-        navMenu.classList.toggle("open");
-      });
-      window.addEventListener("scroll", () => {
-        document
-          .getElementById("main-header")
-          .classList.toggle("scrolled", window.scrollY > 50);
-      });
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) e.target.classList.add("in-view");
-          });
-        },
-        { threshold: 0.12 },
-      );
-      document
-        .querySelectorAll(".reveal, .reveal-up, .reveal-left, .reveal-right")
-        .forEach((el) => observer.observe(el));
-    </script>
-    <script>
-
-  
-    function toggleBot() {
-    const bot = document.getElementById("botBox");
-
-    if (bot.style.display === "block") {
-        bot.style.display = "none";
-    } else {
-        bot.style.display = "block";
-    }
-}
-
-function showAnswer(num) {
-    let answer = "";
-
-    switch(num) {
-        case 1:
-            answer = "Borewell drilling cost depends on depth, soil condition, and location.";
-            break;
-        case 2:
-            answer = "Pump installation charges depend on motor type and borewell depth.";
-            break;
-        case 3:
-            answer = "We serve Karnataka, Tamil Nadu, and nearby areas.";
-            break;
-        case 4:
-            answer = "Yes, we provide 24/7 borewell service support.";
-            break;
-        case 5:
-            answer = "We drill from 100 feet to 1500+ feet based on requirement.";
-            break;
-        case 6:
-            answer = "Yes, we provide PVC and HDPE casing pipes.";
-            break;
-        case 7:
-            answer = "We install submersible, compressor, and motor pumps.";
-            break;
-        case 8:
-            answer = "Drilling usually takes 1–2 days depending on depth.";
-            break;
-        case 9:
-            answer = "Water availability depends on underground geology.";
-            break;
-        case 10:
-            answer = "Call us at +91 98807 01789.";
-            break;
-    }
-
-    document.getElementById("answer-box").innerHTML = answer;
-    let botBox = document.getElementById("botBox");
-botBox.scrollTop = botBox.scrollHeight;
-}
-    </script>
-    <script>
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-        {
-            pageLanguage: 'en',
-            includedLanguages: 'en,kn,hi,te,ta,ml'
-        },
-        'google_translate_element'
-    );
-}
-
-document.getElementById("languageSelector").addEventListener("change", function () {
-    var lang = this.value;
-    var combo = document.querySelector(".goog-te-combo");
-
-    if (combo) {
-        combo.value = lang;
-        combo.dispatchEvent(new Event("change"));
-    }
-});
-</script>
-
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  </body>
+  <script src="main.js"></script>
+</body>
 </html>

@@ -1,619 +1,236 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ratings & Reviews | Sri Anantashayana Borewells & Pumps</title>
-  <meta name="description" content="Read customer reviews and rate Sri Anantashayana Borewells & Pumps." />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <title>Customer Ratings & Reviews — Sri Anantashayana Borewells & Pumps</title>
+  <meta name="description" content="Read real customer reviews and rate your experience with Sri Anantashayana Borewells & Pumps (HYDROWELL)." />
+  
+  <link rel="icon" type="image/jpeg" href="logo.jpeg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <style>
-    /* ── Tab layout ── */
-    .ratings-wrapper {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 40px 20px 60px;
-    }
-
-    .ratings-hero {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-    .ratings-hero h2 {
-      font-size: 2rem;
-      color: var(--teal, #008080);
-      margin-bottom: 6px;
-    }
-    .ratings-hero p {
-      color: #666;
-      font-size: 0.95rem;
-    }
-    .avg-score {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #e7faf0;
-      border: 1px solid #25d366;
-      border-radius: 50px;
-      padding: 8px 22px;
-      margin-top: 12px;
-      font-weight: 700;
-      color: #0f6e56;
-      font-size: 1.1rem;
-    }
-
-    /* Tabs */
-    .tab-bar {
-      display: flex;
-      gap: 0;
-      border-bottom: 2px solid #e0e0e0;
-      margin-bottom: 32px;
-    }
-    .tab-btn {
-      flex: 1;
-      padding: 13px 10px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #888;
-      border-bottom: 3px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
-      margin-bottom: -2px;
-    }
-    .tab-btn.active {
-      color: var(--teal, #008080);
-      border-bottom: 3px solid var(--teal, #008080);
-    }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
-    /* ── Feedback form ── */
-    .feedback-form {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      padding: 32px 28px;
-    }
-    .feedback-form h3 {
-      margin-bottom: 22px;
-      font-size: 1.2rem;
-      color: #222;
-    }
-    .form-group {
-      margin-bottom: 18px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 7px;
-      color: #444;
-    }
-    .form-group input[type="text"],
-    .form-group textarea {
-      width: 100%;
-      padding: 11px 14px;
-      border: 1px solid #ccc;
-      border-radius: 7px;
-      font-size: 0.95rem;
-      box-sizing: border-box;
-      font-family: inherit;
-      transition: border 0.2s;
-    }
-    .form-group input[type="text"]:focus,
-    .form-group textarea:focus {
-      border-color: var(--teal, #008080);
-      outline: none;
-    }
-
-    /* Star rating picker */
-    .star-picker {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      gap: 4px;
-    }
-    .star-picker input { display: none; }
-    .star-picker label {
-      font-size: 2rem;
-      cursor: pointer;
-      color: #ddd;
-      transition: color 0.15s;
-    }
-    .star-picker input:checked ~ label,
-    .star-picker label:hover,
-    .star-picker label:hover ~ label {
-      color: #f5c518;
-    }
-
-    /* Photo upload */
-    .photo-upload-label {
-      display: inline-block;
-      cursor: pointer;
-      background: #f5f5f5;
-      border: 1.5px dashed #ccc;
-      border-radius: 8px;
-      padding: 12px 20px;
-      font-size: 0.9rem;
-      color: #555;
-      transition: background 0.2s;
-    }
-    .photo-upload-label:hover { background: #e8f7f3; border-color: #008080; }
-    #photoInput { display: none; }
-    #photo-preview {
-      margin-top: 10px;
-      display: none;
-    }
-    #photo-preview img {
-      max-width: 180px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-    }
-
-    .submit-btn {
-      background: var(--teal, #008080);
-      color: white;
-      border: none;
-      padding: 13px 30px;
-      border-radius: 7px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-      width: 100%;
-      margin-top: 4px;
-    }
-    .submit-btn:hover { background: #006666; }
-
-    #form-msg {
-      display: none;
-      background: #e7faf0;
-      border: 1px solid #25d366;
-      border-radius: 7px;
-      padding: 12px 16px;
-      color: #0f6e56;
-      font-size: 0.92rem;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    /* ── Reviews list ── */
-    .reviews-list { display: flex; flex-direction: column; gap: 20px; }
-
-    .review-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-      padding: 22px 24px;
-      border-left: 4px solid var(--teal, #008080);
-    }
-    .review-card .rc-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 10px;
-    }
-    .rc-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: #e7faf0;
-      color: #0f6e56;
-      font-weight: 700; font-size: 1.1rem;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .rc-name { font-weight: 700; font-size: 1rem; color: #222; }
-    .rc-date { font-size: 0.78rem; color: #999; margin-top: 2px; }
-    .rc-stars { color: #f5c518; font-size: 1.15rem; margin-bottom: 8px; }
-    .rc-comment { font-size: 0.94rem; color: #444; line-height: 1.6; }
-    .rc-photo {
-      margin-top: 12px;
-    }
-    .rc-photo img {
-      max-width: 220px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      cursor: pointer;
-    }
-
-    .no-reviews {
-      text-align: center;
-      padding: 40px 20px;
-      color: #888;
-      font-size: 0.95rem;
-    }
-    .no-reviews i { font-size: 2.5rem; color: #ccc; display: block; margin-bottom: 10px; }
-
-    /* Filter bar */
-    .filter-bar {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .filter-bar label { font-size: 0.85rem; font-weight: 600; color: #555; }
-    .filter-bar select {
-      padding: 7px 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 0.88rem;
-      cursor: pointer;
-    }
-    .review-count {
-      margin-left: auto;
-      font-size: 0.82rem;
-      color: #888;
-    }
-
-    /* Lightbox */
-    #lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.82);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-    }
-    #lightbox.open { display: flex; }
-    #lightbox img {
-      max-width: 90vw;
-      max-height: 85vh;
-      border-radius: 10px;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    }
-    #lightbox-close {
-      position: fixed;
-      top: 20px; right: 24px;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-      line-height: 1;
-      z-index: 10000;
-    }
-
-    @media (max-width: 600px) {
-      .feedback-form { padding: 22px 16px; }
-      .ratings-hero h2 { font-size: 1.5rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
-  <!-- HEADER -->
-  <header id="main-header">
-    <div class="header-inner">
-      <div class="logo-area">
-        <img src="logo.jpeg" alt="Sri Anantashayana Borewells" />
-        <div class="logo-text">
-          <h1>Sri Anantashayana Borewells & Pumps</h1>
-          <p>25+ Years of Trusted Service</p>
-        </div>
+  <!-- TOP BAR -->
+  <aside class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-info">
+        <span class="top-bar-item"><i class="fas fa-phone-alt"></i> <a href="tel:+919880701789" class="top-bar-link">+91 98807 01789</a></span>
+        <span class="top-bar-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919380410134" target="_blank" class="top-bar-link">+91 93804 10134</a></span>
+        <span class="top-bar-item"><i class="fas fa-map-marker-alt"></i> <span>Anjananagar, Magadi Main Road, Bengaluru - 560091</span></span>
+        <span class="top-bar-item"><i class="fas fa-clock"></i> <span>Open 24 Hours</span></span>
       </div>
+      <div class="top-bar-cta">
+        <a href="index.html#booking" class="top-bar-link"><i class="fas fa-calendar-check"></i> Book Online</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.jpeg" alt="HYDROWELL Logo" width="48" height="48" />
+        <div class="brand-name">
+          <span class="brand-title">HYDRO<span>WELL</span></span>
+          <span class="brand-subtitle">Sri Anantashayana Borewells</span>
+        </div>
+      </a>
+
       <nav>
-        <ul id="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="ratings.html" class="active">Ratings <span class="rating-badge">⭐ 4.9/5</span></a></li>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="index.html#process" class="nav-link">Process</a></li>
+          <li><a href="index.html#booking" class="nav-link">Booking</a></li>
+          <li><a href="ratings.html" class="nav-link active">Reviews <span class="nav-rating-badge" id="nav-rating-badge">⭐ 4.7/5</span></a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
       </nav>
-      <a href="tel:+919880701789" class="header-cta"><i class="fas fa-phone"></i> Call Now</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
 
-  <!-- PAGE BANNER -->
-  <section class="page-banner">
-    <h2>Ratings & Reviews</h2>
-    <p>What Our Customers Say About Us</p>
-  </section>
-
-  <!-- MAIN CONTENT -->
-  <div class="ratings-wrapper">
-
-    <!-- Hero / avg score -->
-    <div class="ratings-hero">
-      <h2>⭐ Customer Feedback</h2>
-      <p>Share your experience or read what others say</p>
-      <div class="avg-score" id="avg-score-display">
-        <i class="fas fa-star"></i> <span id="avg-num">—</span> / 5 &nbsp;|&nbsp; <span id="total-num">0</span> reviews
-      </div>
-    </div>
-
-    <!-- Tabs -->
-    <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchTab('submit', this)">
-        <i class="fas fa-pen"></i> Write a Review
-      </button>
-      <button class="tab-btn" onclick="switchTab('view', this)">
-        <i class="fas fa-comments"></i> View All Reviews
-      </button>
-    </div>
-
-    <!-- TAB 1: Submit feedback -->
-    <div id="tab-submit" class="tab-panel active">
-      <div class="feedback-form">
-        <h3>Rate Our Service</h3>
-
-        <div id="form-msg">✅ Thank you! Your review has been submitted.</div>
-
-        <div class="form-group">
-          <label>Your Name *</label>
-          <input type="text" id="fb-name" placeholder="Enter your full name" />
-        </div>
-
-        <div class="form-group">
-          <label>Rating *</label>
-          <div class="star-picker" id="star-picker">
-            <input type="radio" id="s5" name="rating" value="5" /><label for="s5" title="5 stars">★</label>
-            <input type="radio" id="s4" name="rating" value="4" /><label for="s4" title="4 stars">★</label>
-            <input type="radio" id="s3" name="rating" value="3" /><label for="s3" title="3 stars">★</label>
-            <input type="radio" id="s2" name="rating" value="2" /><label for="s2" title="2 stars">★</label>
-            <input type="radio" id="s1" name="rating" value="1" /><label for="s1" title="1 star">★</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Your Feedback *</label>
-          <textarea id="fb-comment" rows="5" placeholder="Write your experience with us…"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Upload Photo (Optional)</label>
-          <label class="photo-upload-label" for="photoInput">
-            <i class="fas fa-camera"></i> Choose Photo
-          </label>
-          <input type="file" id="photoInput" accept="image/jpeg,image/png,image/jpg,image/webp" />
-          <div id="photo-preview"><img id="preview-img" src="" alt="Preview" /></div>
-        </div>
-
-        <button class="submit-btn" onclick="submitFeedback()">
-          <i class="fas fa-paper-plane"></i> Submit Review
+      <div class="nav-actions">
+        <a href="index.html#booking" class="btn btn-primary btn-sm">
+          <i class="fas fa-wrench"></i> Book Service
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
+  </header>
 
-    <!-- TAB 2: View reviews -->
-    <div id="tab-view" class="tab-panel">
-      <div class="filter-bar">
-        <label for="filter-stars">Filter:</label>
-        <select id="filter-stars" onchange="renderReviews()">
-          <option value="0">All Stars</option>
-          <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
-          <option value="4">⭐⭐⭐⭐ 4 Stars</option>
-          <option value="3">⭐⭐⭐ 3 Stars</option>
-          <option value="2">⭐⭐ 2 Stars</option>
-          <option value="1">⭐ 1 Star</option>
-        </select>
-        <span class="review-count" id="review-count"></span>
-      </div>
-      <div class="reviews-list" id="reviews-list"></div>
+  <!-- PAGE HEADER -->
+  <section class="section" style="background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%); padding: 50px 0;">
+    <div class="container" style="text-align: center;">
+      <span class="section-badge">Live Database Feedback</span>
+      <h1 style="margin-bottom: 12px;">Customer Ratings & Reviews</h1>
+      <p style="max-width: 700px; margin: 0 auto; color: var(--secondary-dark); font-size: 1.05rem;">
+        Real feedback from residential property owners, farmers, and commercial builders across Karnataka.
+      </p>
     </div>
+  </section>
 
-  </div><!-- /.ratings-wrapper -->
+  <!-- REVIEWS & SUBMISSION SECTION -->
+  <section class="section feedback-section" id="feedback">
+    <div class="container">
+      <!-- Ratings Summary Strip -->
+      <div class="feedback-stats-strip">
+        <div class="score-box">
+          <div class="big-rating-number" id="avg-rating-val">4.7</div>
+          <div class="stars-display" id="avg-stars-display">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <div class="score-count-label" id="total-reviews-count">Based on 3 customer reviews</div>
+        </div>
 
-  <!-- Lightbox for photo -->
-  <div id="lightbox" onclick="closeLightbox()">
-    <span id="lightbox-close">&times;</span>
-    <img id="lightbox-img" src="" alt="Review photo" />
-  </div>
+        <div class="breakdown-bars">
+          <div class="breakdown-row">
+            <span class="bar-star-label">5 Stars</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-5" style="width: 66%;"></div></div>
+            <span class="bar-count-label" id="bar-count-5">2</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bar-star-label">4 Stars</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-4" style="width: 33%;"></div></div>
+            <span class="bar-count-label" id="bar-count-4">1</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bar-star-label">3 Stars</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-3" style="width: 0%;"></div></div>
+            <span class="bar-count-label" id="bar-count-3">0</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bar-star-label">2 Stars</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-2" style="width: 0%;"></div></div>
+            <span class="bar-count-label" id="bar-count-2">0</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bar-star-label">1 Star</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-1" style="width: 0%;"></div></div>
+            <span class="bar-count-label" id="bar-count-1">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Grid: Reviews List + Form -->
+      <div class="feedback-grid">
+        <div class="reviews-container">
+          <div class="reviews-filter-bar">
+            <h3 style="font-size:1.15rem;"><i class="fas fa-comments"></i> Verified Reviews</h3>
+            <div class="filter-pills">
+              <button class="pill-btn active" data-filter="0">All</button>
+              <button class="pill-btn" data-filter="5">5 ⭐</button>
+              <button class="pill-btn" data-filter="4">4 ⭐</button>
+              <button class="pill-btn" data-filter="3">3 ⭐</button>
+            </div>
+          </div>
+
+          <div class="reviews-list" id="reviews-list">
+            <!-- Loaded dynamically from /api/feedback.php -->
+          </div>
+        </div>
+
+        <!-- Submit Feedback Form -->
+        <div class="feedback-form-box">
+          <h3><i class="fas fa-pen-alt"></i> Share Your Experience</h3>
+          <p>Your feedback helps other property owners select the right borewell contractor.</p>
+
+          <form id="feedback-form" novalidate>
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label" for="fb-name">Your Full Name <span class="required">*</span></label>
+              <input type="text" id="fb-name" name="name" class="form-input" placeholder="e.g. Puneeth S" required />
+            </div>
+
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label" for="fb-email">Email / Phone <span style="font-weight:normal; color:var(--text-muted);">(Optional)</span></label>
+              <input type="text" id="fb-email" name="email" class="form-input" placeholder="e.g. name@gmail.com" />
+            </div>
+
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label">Star Rating <span class="required">*</span></label>
+              <div class="star-selector" id="star-selector">
+                <input type="radio" id="star5" name="fb-rating" value="5" checked />
+                <label for="star5" title="5 Stars">★</label>
+                <input type="radio" id="star4" name="fb-rating" value="4" />
+                <label for="star4" title="4 Stars">★</label>
+                <input type="radio" id="star3" name="fb-rating" value="3" />
+                <label for="star3" title="3 Stars">★</label>
+                <input type="radio" id="star2" name="fb-rating" value="2" />
+                <label for="star2" title="2 Stars">★</label>
+                <input type="radio" id="star1" name="fb-rating" value="1" />
+                <label for="star1" title="1 Star">★</label>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label" for="fb-comment">Your Feedback <span class="required">*</span></label>
+              <textarea id="fb-comment" name="comment" class="form-textarea" rows="4" placeholder="Tell us about the drilling, casing pipes, or pump fitting experience..." required></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom:20px;">
+              <label class="form-label" for="fb-photo">Attach Project Photo <span style="font-weight:normal; color:var(--text-muted);">(Optional)</span></label>
+              <input type="file" id="fb-photo" name="photo" class="form-input" accept="image/jpeg,image/png,image/webp" />
+            </div>
+
+            <button type="submit" id="fb-submit-btn" class="btn btn-primary btn-block">
+              <i class="fas fa-paper-plane"></i> Submit Feedback
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="logo.jpeg" alt="Logo" class="footer-logo" />
-        <h3>Sri Anantashayana Borewells & Pumps</h3>
-        <p>Professional Borewell Drilling & Water Solutions across Bengaluru and Karnataka.</p>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+            <img src="logo.jpeg" alt="HYDROWELL" style="width:40px; height:40px; border-radius:6px;" />
+            <h3 style="margin:0;">HYDROWELL</h3>
+          </div>
+          <p>Sri Anantashayana Borewells & Pumps has provided certified borewell drilling, casing pipe fitting, filter screens, and submersible pump installation across Bengaluru and Karnataka for over 25 years.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About HYDROWELL</a>
+            <a href="services.html">All Services</a>
+            <a href="index.html#booking">Book a Service</a>
+            <a href="ratings.html">Customer Reviews</a>
+            <a href="gallery.html">Project Gallery</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Our Services</h4>
+          <div class="footer-links">
+            <a href="services.html">Borewell Drilling</a>
+            <a href="services.html">Casing Pipe Installation</a>
+            <a href="services.html">Submersible Pump Fitting</a>
+            <a href="services.html">Filter Pipes</a>
+            <a href="services.html">Compressor Flushing</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Contact & WhatsApp</h4>
+          <p><i class="fas fa-phone-alt"></i> +91 98807 01789</p>
+          <p><i class="fab fa-whatsapp"></i> +91 98807 01789</p>
+          <p><i class="fab fa-whatsapp"></i> +91 93804 10134</p>
+          <p><i class="fas fa-map-marker-alt"></i> Anjananagar, Magadi Main Road, Bengaluru - 560091</p>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="ratings.html">Ratings <span class="rating-badge">⭐ 4.9/5</span></a></li>
-        </ul>
+      <div class="footer-bottom">
+        <p>© 2000–2026 Sri Anantashayana Borewells & Pumps (HYDROWELL). All Rights Reserved.</p>
       </div>
-      <div class="footer-col">
-        <h4>Contact Information</h4>
-        <p><i class="fas fa-phone"></i> +91 98807 01789</p>
-        <p><i class="fab fa-whatsapp"></i> +91 98807 01789</p>
-        <p><i class="fas fa-map-marker-alt"></i> Anjananagar, Magadi Main Road, Bengaluru - 560091</p>
-        <p><i class="fas fa-clock"></i> Open 24 Hours</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Sri Anantashayana Borewells & Pumps. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <a class="whatsapp" href="https://wa.me/919880701789" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  <a class="call-btn" href="tel:+919880701789" aria-label="Call"><i class="fas fa-phone"></i></a>
-  <a class="maps-btn" href="https://maps.app.goo.gl/B3EnX8a8e8juFonf7" target="_blank" aria-label="Find Us"><i class="fas fa-location-dot"></i></a>
-
-  <script>
-    /* ── Header ── */
-    const hamburger = document.getElementById("hamburger");
-    const navMenu   = document.getElementById("nav-menu");
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("open");
-      navMenu.classList.toggle("open");
-    });
-    window.addEventListener("scroll", () => {
-      document.getElementById("main-header").classList.toggle("scrolled", window.scrollY > 50);
-    });
-
-    /* ── Storage key ── */
-    const STORAGE_KEY = "sab_reviews";
-
-    /* ── Load reviews from localStorage ── */
-    function getReviews() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
-      catch { return []; }
-    }
-
-    function saveReviews(arr) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
-    }
-
-    /* ── Photo preview ── */
-    let photoBase64 = "";
-
-    document.getElementById("photoInput").addEventListener("change", function () {
-      const file = this.files[0];
-      if (!file) return;
-
-      /* Limit size to 2MB to keep localStorage happy */
-      if (file.size > 2 * 1024 * 1024) {
-        alert("Photo must be under 2 MB. Please choose a smaller image.");
-        this.value = "";
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        photoBase64 = e.target.result;          // data:image/... base64
-        const preview = document.getElementById("photo-preview");
-        document.getElementById("preview-img").src = photoBase64;
-        preview.style.display = "block";
-      };
-      reader.readAsDataURL(file);
-    });
-
-    /* ── Submit feedback ── */
-    function submitFeedback() {
-      const name    = document.getElementById("fb-name").value.trim();
-      const comment = document.getElementById("fb-comment").value.trim();
-      const ratingEl = document.querySelector('input[name="rating"]:checked');
-
-      if (!name) { alert("Please enter your name."); return; }
-      if (!ratingEl) { alert("Please select a star rating."); return; }
-      if (!comment) { alert("Please write your feedback."); return; }
-
-      const review = {
-        id:      Date.now(),
-        name:    name,
-        rating:  parseInt(ratingEl.value),
-        comment: comment,
-        photo:   photoBase64,
-        date:    new Date().toLocaleDateString("en-IN", { day:"2-digit", month:"short", year:"numeric" })
-      };
-
-      const reviews = getReviews();
-      reviews.unshift(review);   // newest first
-      saveReviews(reviews);
-
-      /* Reset form */
-      document.getElementById("fb-name").value    = "";
-      document.getElementById("fb-comment").value = "";
-      document.querySelectorAll('input[name="rating"]').forEach(r => r.checked = false);
-      document.getElementById("photoInput").value = "";
-      document.getElementById("photo-preview").style.display = "none";
-      photoBase64 = "";
-
-      /* Show success */
-      const msg = document.getElementById("form-msg");
-      msg.style.display = "block";
-      setTimeout(() => { msg.style.display = "none"; }, 3500);
-
-      updateAvgScore();
-    }
-
-    /* ── Render reviews list ── */
-    function renderReviews() {
-      const filter  = parseInt(document.getElementById("filter-stars").value);
-      let reviews   = getReviews();
-      if (filter > 0) reviews = reviews.filter(r => r.rating === filter);
-
-      document.getElementById("review-count").textContent =
-        reviews.length === 1 ? "1 review" : `${reviews.length} reviews`;
-
-      const list = document.getElementById("reviews-list");
-
-      if (reviews.length === 0) {
-        list.innerHTML = `<div class="no-reviews">
-          <i class="fas fa-comment-slash"></i>
-          ${filter > 0 ? "No reviews with this rating yet." : "No reviews yet. Be the first to rate us!"}
-        </div>`;
-        return;
-      }
-
-      list.innerHTML = reviews.map(r => {
-        const stars  = "⭐".repeat(r.rating);
-        const initials = r.name.split(" ").map(w => w[0]).join("").slice(0,2).toUpperCase();
-        const photoHTML = r.photo
-          ? `<div class="rc-photo"><img src="${r.photo}" alt="Customer photo" onclick="openLightbox('${r.photo}')" /></div>`
-          : "";
-        return `
-          <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">${initials}</div>
-              <div>
-                <div class="rc-name">${escHtml(r.name)}</div>
-                <div class="rc-date">${r.date}</div>
-              </div>
-            </div>
-            <div class="rc-stars">${stars}</div>
-            <div class="rc-comment">${escHtml(r.comment).replace(/\n/g,"<br>")}</div>
-            ${photoHTML}
-          </div>`;
-      }).join("");
-    }
-
-    /* ── Update average score ── */
-    function updateAvgScore() {
-      const reviews = getReviews();
-      if (reviews.length === 0) {
-        document.getElementById("avg-num").textContent   = "—";
-        document.getElementById("total-num").textContent = "0";
-        return;
-      }
-      const avg = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
-      document.getElementById("avg-num").textContent   = avg.toFixed(1);
-      document.getElementById("total-num").textContent = reviews.length;
-    }
-
-    /* ── Tab switching ── */
-    function switchTab(tab, btn) {
-      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
-      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-      document.getElementById("tab-" + tab).classList.add("active");
-      btn.classList.add("active");
-      if (tab === "view") renderReviews();
-    }
-
-    /* ── Lightbox ── */
-    function openLightbox(src) {
-      document.getElementById("lightbox-img").src = src;
-      document.getElementById("lightbox").classList.add("open");
-    }
-    function closeLightbox() {
-      document.getElementById("lightbox").classList.remove("open");
-    }
-    document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
-
-    /* ── Helpers ── */
-    function escHtml(str) {
-      return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-    }
-
-    /* ── Init ── */
-    updateAvgScore();
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>

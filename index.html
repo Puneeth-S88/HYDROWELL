@@ -1,669 +1,912 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <style>
-      .chat-icon {
-    position: fixed;
-    top: 10px;
-    right: 20px;
-    width: 65px;
-    height: 65px;
-    background: #007bff;
-    color: white;
-    font-size: 30px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-    z-index: 9999;
-}
-
-.chat-icon:hover {
-    transform: scale(1.1);
-}
-
-.bot-box {
-    position: fixed;
-    bottom: 100px;
-    right: 25px;
-    width: 340px;
-    max-height: 500px;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-    padding: 20px;
-    display: none; /* hidden initially */
-    overflow-y: auto;
-    z-index: 9999;
-}
-
-.bot-box h3 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #222;
-}
-
-.bot-box button {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #f1f1f1;
-    cursor: pointer;
-    text-align: left;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.bot-box button:hover {
-    background: #007bff;
-    color: white;
-}
-
-#answer-box {
-    margin-top: 15px;
-    padding: 15px;
-    background: #eef6ff;
-    border-left: 4px solid #007bff;
-    border-radius: 8px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333;
-}
-    </style>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Sri Anantashayana Borewells & Pumps | Borewell Drilling Services in
-      Bengaluru
-      
-    </title>
-    <meta
-      name="description"
-      content="Sri Anantashayana Borewells & Pumps provides Borewell Drilling, Filter Pipes, Pump Installation, Casing Pipes and Water Solutions across Bengaluru and Karnataka."
-    />
-    <meta
-      name="keywords"
-      content="Borewell Drilling Bengaluru, Borewell Services Bangalore, Casing Pipes, Pump Installation, Borewell Contractors"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HYDROWELL — Sri Anantashayana Borewells & Pumps | Bengaluru, Karnataka</title>
+  <meta name="description" content="Sri Anantashayana Borewells & Pumps (HYDROWELL) provides professional Borewell Drilling, Casing Pipes, Submersible Pump Installation, and Filter Pipes across Bengaluru and Karnataka. 25+ Years Experience." />
+  <meta name="keywords" content="Borewell Drilling Bengaluru, Borewell Contractor Bangalore, Casing Pipes, Pump Installation, Borewell Services Karnataka, HYDROWELL" />
   
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="logo.jpeg" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-  <body>
-    <div id="google_translate_element" style="display:none;"></div>
-    
+<body>
+  <!-- TOP INFORMATION BAR -->
+  <aside class="top-bar" aria-label="Quick Contact Bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-info">
+        <span class="top-bar-item">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+919880701789" class="top-bar-link">+91 98807 01789</a>
+        </span>
+        <span class="top-bar-item">
+          <i class="fab fa-whatsapp"></i>
+          <a href="https://wa.me/919380410134" target="_blank" class="top-bar-link">+91 93804 10134</a>
+        </span>
+        <span class="top-bar-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Anjananagar, Magadi Main Road, Bengaluru - 560091</span>
+        </span>
+        <span class="top-bar-item">
+          <i class="fas fa-clock"></i>
+          <span>Open 24 Hours / 7 Days</span>
+        </span>
+      </div>
+      <div class="top-bar-cta">
+        <a href="#booking" class="top-bar-link"><i class="fas fa-calendar-check"></i> Book Online</a>
+      </div>
+    </div>
+  </aside>
 
-    <!-- HEADER -->
-    <header id="main-header">
-      <div class="header-inner">
-        <div class="logo-area">
-          <img
-            src="logo.jpeg"
-            height="10"
-            width="10"
-            alt="Sri Anantashayana Borewells"
-          />
-
-          <div class="logo-text">
-            <h1>Sri Anantashayana Borewells & Pumps</h1>
-            <p>25+ Years of Trusted Service</p>
-          </div>
+  <!-- STICKY NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo" aria-label="HYDROWELL Home">
+        <img src="logo.jpeg" alt="HYDROWELL Logo" width="48" height="48" />
+        <div class="brand-name">
+          <span class="brand-title">HYDRO<span>WELL</span></span>
+          <span class="brand-subtitle">Sri Anantashayana Borewells</span>
         </div>
-        <nav>
-          <ul id="nav-menu">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li>
-              <a href="ratings.html">
-                Ratings <span class="rating-badge">⭐ 4.9/5</span>
-              </a>
-            </li>
-            <!-- Chat Icon -->
-<div class="chat-icon" onclick="toggleBot()">
-    🤖
-</div>
+      </a>
 
-<!-- Chatbot -->
-<div class="bot-box" id="botBox">
-    <h3>Ask About Borewell</h3>
+      <!-- Desktop & Mobile Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#process" class="nav-link">Process</a></li>
+          <li><a href="#booking" class="nav-link">Booking</a></li>
+          <li>
+            <a href="#feedback" class="nav-link">
+              Reviews <span class="nav-rating-badge" id="nav-rating-badge">⭐ 4.7/5</span>
+            </a>
+          </li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
 
-    <button onclick="showAnswer(1)">1. Borewell drilling cost?</button>
-    <button onclick="showAnswer(2)">2. Pump installation charges?</button>
-    <button onclick="showAnswer(3)">3. Service areas?</button>
-    <button onclick="showAnswer(4)">4. 24/7 service?</button>
-    <button onclick="showAnswer(5)">5. How deep do you drill?</button>
-    <button onclick="showAnswer(6)">6. Do you provide casing pipes?</button>
-    <button onclick="showAnswer(7)">7. Which pumps do you install?</button>
-    <button onclick="showAnswer(8)">8. How long does drilling take?</button>
-    <button onclick="showAnswer(9)">9. Water guarantee available?</button>
-    <button onclick="showAnswer(10)">10. Contact number?</button>
+      <div class="nav-actions">
+        <!-- Language Selector -->
+        <select class="lang-select" id="languageSelector" aria-label="Select Language">
+          <option value="en">🌐 English</option>
+          <option value="kn">ಕನ್ನಡ (Kannada)</option>
+          <option value="hi">हिंदी (Hindi)</option>
+          <option value="te">తెలుగు (Telugu)</option>
+          <option value="ta">தமிழ் (Tamil)</option>
+          <option value="ml">മലയാളം (Malayalam)</option>
+        </select>
 
-    <div id="answer-box"></div>
-</div>      
-          </ul>
-        </nav>
-        <a href="tel:+919880701789" class="header-cta"
-          ><i class="fas fa-phone"></i> Call Now</a
-        >
-        <button class="hamburger" id="hamburger" aria-label="Menu">
+        <a href="#booking" class="btn btn-primary btn-sm d-none-mobile">
+          <i class="fas fa-wrench"></i> Book Service
+        </a>
+
+        <!-- Hamburger Toggle -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
           <span></span><span></span><span></span>
         </button>
       </div>
-      <div class="lang-box">
-    <select id="languageSelector">
-        <option value="">🌐 Language</option>
-        <option value="en">English</option>
-        <option value="kn">Kannada</option>
-        <option value="hi">Hindi</option>
-        <option value="te">Telugu</option>
-        <option value="ta">Tamil</option>
-        <option value="ml">Malayalam</option>
-    </select>
-</div>
-    </header>
-    
+    </div>
+  </header>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content reveal">
-        <br>
-        <br>
-        <br>
-        <br>
-      
-        <span class="eyebrow">Bengaluru's Trusted Borewell Experts</span>
-        <h2>Expert Borewell Solutions<br />For Reliable Water Supply</h2>
+  <!-- Google Translate Hidden Anchor -->
+  <div id="google_translate_element" style="display:none;"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-shield-alt"></i> Bengaluru & Karnataka's Trusted Groundwater Experts
+        </div>
+        <h1 class="hero-title">
+          Reliable Borewell &<br /><span>Water Solutions</span>
+        </h1>
+        <p class="hero-desc">
+          Professional hydraulic borewell drilling backed by experienced geologist groundwater surveys, durable casing pipe installation, slotted filter pipes, and high-efficiency submersible pump systems. Serving homes, farms, and industries for over 25 years.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#booking" class="btn btn-primary">
+            <i class="fas fa-calendar-check"></i> Book a Service
+          </a>
+          <a href="tel:+919880701789" class="btn btn-dark">
+            <i class="fas fa-phone-alt"></i> Call +91 98807 01789
+          </a>
+          <a href="https://wa.me/919880701789" target="_blank" class="btn btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+          </a>
+        </div>
+
+        <!-- Trust Stats Strip -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">25+</div>
+            <div class="stat-label">Years Exp.</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">1,000+</div>
+            <div class="stat-label">Projects Done</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">Support</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Pan Karnataka</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Composition -->
+      <div class="hero-visual">
+        <div class="hero-card-main">
+          <img src="drilling2.png" alt="HYDROWELL Professional Borewell Drilling Rig" />
+        </div>
+
+        <div class="hero-floating-card hero-card-1">
+          <div class="floating-icon">
+            <i class="fas fa-tint"></i>
+          </div>
+          <div class="floating-info">
+            <h5>Scientific Point Marking</h5>
+            <p>Geologist survey before drilling</p>
+          </div>
+        </div>
+
+        <div class="hero-floating-card hero-card-2">
+          <div class="floating-icon" style="background-color:#e7faf0; color:#15803d;">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="floating-info">
+            <h5>Certified Equipment</h5>
+            <p>High-pressure sensor rigs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section section-alt" id="about">
+    <div class="container about-grid">
+      <div class="about-media">
+        <div class="about-img-box">
+          <img src="establish.png" alt="Sri Anantashayana Borewells Establishment" />
+        </div>
+        <div class="about-experience-badge">
+          <div class="badge-years">2000</div>
+          <div class="badge-title">Established in Bengaluru</div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <span class="section-badge">Who We Are</span>
+        <h2 class="section-title">About Sri Anantashayana Borewells & Pumps (HYDROWELL)</h2>
+        <p class="about-lead">
+          Founded in the year 2000, Sri Anantashayana Borewells & Pumps has stood as an industry pioneer across Karnataka, delivering end-to-end groundwater engineering with precision, integrity, and advanced hydraulic machinery.
+        </p>
         <p>
-          From scientific borewell point identification by experienced
-          geologists to drilling, casing pipe installation, filter pipe
-          installation and submersible motor fitting, we provide complete
-          borewell solutions for homes, farms, industries and commercial
-          properties across Karnataka.
+          Our field operations integrate scientific groundwater point identification by senior certified geologists, advanced hydraulic drilling rigs (4.5" & 6.5"), heavy-duty ISI casing pipes, and genuine submersible pumps (Texmo, CRI, Kirloskar). Whether drilling for independent residences, gated communities, farms, or commercial complexes, we ensure water security built to last.
         </p>
-        <div class="hero-btns">
-          <a href="tel:+919880701789" class="btn btn-primary"
-            ><i class="fas fa-phone"></i> Call Now</a
-          >
-          <a href="contact.html" class="btn btn-outline">Get Free Quote</a>
-           <!-- TOP BAR -->
-    <section class="top-bar">
-      <div class="top-bar-inner">
-        <a href="tel:+919880701789"
-          ><i class="fas fa-phone"></i> +91 9880701789</a
-        >
-        <span class="divider">|</span>
-        <span
-          ><i class="fas fa-location-dot"></i> Anjananagar, Magadi Main Road,
-          Bengaluru - 560091</span
-        >
-        <span class="divider">|</span>
-        <span><i class="fas fa-clock"></i> Open 24 Hours</span>
-      </div>
-    </section>
-        </div>
-      </div>
-     
-      <div class="hero-trust-strip">
-        <div class="trust-item">
-          <span class="trust-num">25+</span><span>Years Experience</span>
-        </div>
-        <div class="trust-divider"></div>
-        <div class="trust-item">
-          <span class="trust-num">1000+</span><span>Projects Done</span>
-        </div>
-        <div class="trust-divider"></div>
-        <div class="trust-item">
-          <span class="trust-num">24/7</span><span>Support</span>
-        </div>
-        <div class="trust-divider"></div>
-        <div class="trust-item">
-          <span class="trust-num">Pan</span><span>Karnataka Service</span>
-        </div>
-      </div>
-      
-    </section>
 
-    <!-- SERVICES -->
-    <section class="section services-home">
-      <div class="container">
-        <div class="section-label">What We Do</div>
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-sub">
-          End-to-end borewell and water solutions for every need.
-        </p>
-        <div class="cards">
-          <div class="card reveal-up">
-            <div class="card-img-wrap">
-              <img src="drilling.jfif" alt="Borewell Drilling" />
-              <div class="card-icon"><i class="fas fa-hammer"></i></div>
-            </div>
-            <div class="card-body">
-              <h3>Borewell Drilling</h3>
-              <p>
-                Accurate borewell drilling backed by expert geological guidance
-                to help identify suitable water points and maximize the chances
-                of successful groundwater access.
-              </p>
-              <a href="services.html" class="card-link"
-                >Learn More <i class="fas fa-arrow-right"></i
-              ></a>
+        <div class="about-features">
+          <div class="about-feature-item">
+            <div class="feature-icon-box"><i class="fas fa-map-marked-alt"></i></div>
+            <div class="feature-text">
+              <h4>Hydrogeological Point Survey</h4>
+              <p>Scientific resistivity surveys to locate productive groundwater aquifers.</p>
             </div>
           </div>
-          <div class="card reveal-up" style="animation-delay: 0.1s">
-            <div class="card-img-wrap">
-              <img src="casing.png" alt="Casing Pipes" />
-              <div class="card-icon"><i class="fas fa-pipe-section"></i></div>
-            </div>
-            <div class="card-body">
-              <h3>Casing Pipes</h3>
-              <p>
-                Durable casing pipe installation that protects borewell walls,
-                improves stability and increases the lifespan of your water
-                source.
-              </p>
-              <a href="services.html" class="card-link"
-                >Learn More <i class="fas fa-pipe-section"></i
-              ></a>
+          <div class="about-feature-item">
+            <div class="feature-icon-box"><i class="fas fa-shield-alt"></i></div>
+            <div class="feature-text">
+              <h4>Class-D Casing & Filter Protection</h4>
+              <p>High-tensile PVC and slotted filter pipes preventing borehole collapse and silt.</p>
             </div>
           </div>
-          <div class="card reveal-up" style="animation-delay: 0.2s">
-            <div class="card-img-wrap">
-              <img src="pump.jpg" alt="Pump Installation" />
-              <div class="card-icon"><i class="fas fa-water"></i></div>
-            </div>
-            <div class="card-body">
-              <h3>Pump Installation</h3>
-              <p>
-                Complete submersible pump installation, repair and maintenance
-                services.
-              </p>
-              <a href="services.html" class="card-link"
-                >Learn More <i class="fas fa-arrow-right"></i
-              ></a>
+          <div class="about-feature-item">
+            <div class="feature-icon-box"><i class="fas fa-tools"></i></div>
+            <div class="feature-text">
+              <h4>Submersible Motor Installation & Repairs</h4>
+              <p>Precision pump lowering, electrical control panels, and 24/7 service backup.</p>
             </div>
           </div>
-          <div class="card reveal-up" style="animation-delay: 0.3s">
-            <div class="card-img-wrap">
-              <img src="filter.jpeg" alt="Filter Pipes" />
-              <div class="card-icon"><i class="fas fa-filter"></i></div>
+        </div>
+
+        <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+          <a href="about.html" class="btn btn-secondary">Read Full Story</a>
+          <a href="#booking" class="btn btn-primary">Book Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">What We Do</span>
+        <h2 class="section-title">Comprehensive Borewell & Water Services</h2>
+        <p class="section-desc">Reliable, modern engineering solutions for residential, agricultural, and commercial water needs across Karnataka.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <article class="service-card">
+          <div class="service-img-wrap">
+            <img src="drilling.jfif" alt="Borewell Drilling" loading="lazy" />
+            <span class="service-tag">Core Service</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon"><i class="fas fa-hammer"></i></div>
+            <h3>Borewell Drilling</h3>
+            <p>High-pressure sensor-assisted hydraulic drilling in 4½" and 6½" diameters for depths from 100 ft to 1500+ ft with geological point marking.</p>
+            <div class="service-footer">
+              <button class="service-action-link" data-book-service="Borewell Drilling" style="background:none; border:none; cursor:pointer;">
+                Book Drilling <i class="fas fa-arrow-right"></i>
+              </button>
+              <a href="services.html" class="service-action-link">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 2 -->
+        <article class="service-card">
+          <div class="service-img-wrap">
+            <img src="casing.png" alt="Casing Pipes Installation" loading="lazy" />
+            <span class="service-tag">Protection</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+            <h3>Casing Pipe Installation</h3>
+            <p>Heavy-duty Class-D PVC and MS casing pipes installed to stabilize loose surface soil, seal against contamination, and guarantee borehole longevity.</p>
+            <div class="service-footer">
+              <button class="service-action-link" data-book-service="Casing Pipe Installation" style="background:none; border:none; cursor:pointer;">
+                Book Casing <i class="fas fa-arrow-right"></i>
+              </button>
+              <a href="services.html" class="service-action-link">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 3 -->
+        <article class="service-card">
+          <div class="service-img-wrap">
+            <img src="pump.jpg" alt="Submersible Pump Installation" loading="lazy" />
+            <span class="service-tag">Pumping</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon"><i class="fas fa-water"></i></div>
+            <h3>Submersible Pump Installation</h3>
+            <p>Fitting and wiring of Texmo, CRI, and Kirloskar submersible pumps, stage-matched motors, HDPE delivery pipes, and heavy-duty control panels.</p>
+            <div class="service-footer">
+              <button class="service-action-link" data-book-service="Submersible Pump Installation" style="background:none; border:none; cursor:pointer;">
+                Book Pump <i class="fas fa-arrow-right"></i>
+              </button>
+              <a href="services.html" class="service-action-link">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 4 -->
+        <article class="service-card">
+          <div class="service-img-wrap">
+            <img src="filter.jpeg" alt="Slotted Filter Pipes" loading="lazy" />
+            <span class="service-tag">Filtration</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon"><i class="fas fa-filter"></i></div>
+            <h3>Filter Pipe Installation</h3>
+            <p>Precision-slotted PVC filter screens positioned in water-bearing aquifers to allow maximum water yield while blocking sand, silt, and fine sediment.</p>
+            <div class="service-footer">
+              <button class="service-action-link" data-book-service="Filter Pipe Installation" style="background:none; border:none; cursor:pointer;">
+                Book Filter <i class="fas fa-arrow-right"></i>
+              </button>
+              <a href="services.html" class="service-action-link">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 5 -->
+        <article class="service-card">
+          <div class="service-img-wrap">
+            <img src="drill1.jpeg" alt="Borewell Flushing and Cleaning" loading="lazy" />
+            <span class="service-tag">Maintenance</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon"><i class="fas fa-wind"></i></div>
+            <h3>Borewell Flushing & Cleaning</h3>
+            <p>High-pressure air compressor flushing to revive choked borewells, remove accumulated mud, silt and mineral deposits, and restore water flow.</p>
+            <div class="service-footer">
+              <button class="service-action-link" data-book-service="Borewell Flushing & Cleaning" style="background:none; border:none; cursor:pointer;">
+                Book Flushing <i class="fas fa-arrow-right"></i>
+              </button>
+              <a href="services.html" class="service-action-link">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 6 -->
+        <article class="service-card">
+          <div class="service-img-wrap">
+            <img src="drill2.jpeg" alt="Geological Water Survey" loading="lazy" />
+            <span class="service-tag">Survey</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon"><i class="fas fa-satellite-dish"></i></div>
+            <h3>Groundwater Geological Survey</h3>
+            <p>Scientific geophysical resistivity testing conducted by senior geologists to accurately pinpoint water fracture zones before rig mobilization.</p>
+            <div class="service-footer">
+              <button class="service-action-link" data-book-service="Geological Point Survey" style="background:none; border:none; cursor:pointer;">
+                Book Survey <i class="fas fa-arrow-right"></i>
+              </button>
+              <a href="services.html" class="service-action-link">Details</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section section-alt" id="why-us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Our Advantage</span>
+        <h2 class="section-title">Why Choose HYDROWELL?</h2>
+        <p class="section-desc">Over two decades of dependable service built on engineering honesty, modern machinery, and customer satisfaction.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-award"></i></div>
+          <h3>25+ Years Experience</h3>
+          <p>Founded in 2000, we possess deep geological expertise across Bangalore urban, rural, and Karnataka rock strata.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-cogs"></i></div>
+          <h3>Modern Sensor Rigs</h3>
+          <p>Heavy-duty hydraulic rigs capable of drilling in confined residential plots, open agricultural fields, and industrial layouts.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-tag"></i></div>
+          <h3>Transparent Pricing</h3>
+          <p>No hidden charges. Clear itemized estimates for drilling depth, casing pipe feet, motor fitting, and accessories.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-user-tie"></i></div>
+          <h3>Senior Geologist Survey</h3>
+          <p>We do not guess. Scientific resistivity measurements identify the most promising water veins prior to drilling.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Fast 24-48 Hr Deployment</h3>
+          <p>Prompt site inspection and rapid rig mobilization to keep your construction or agricultural schedule on track.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-map-marked-alt"></i></div>
+          <h3>Pan-Karnataka Coverage</h3>
+          <p>From Bengaluru, Ramanagara, Tumakuru, Mandya, Mysuru to Hassan, we serve clients statewide with full warranty support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR 4-STEP SCIENTIFIC PROCESS -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">How We Work</span>
+        <h2 class="section-title">Our 4-Step Scientific Process</h2>
+        <p class="section-desc">A structured engineering methodology guaranteeing water access and long-term borewell health.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-number">01</div>
+          <h4>Geological Survey</h4>
+          <p>Senior hydrogeologists inspect your terrain, measure electrical resistivity, and mark optimal water coordinates.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">02</div>
+          <h4>Precision Drilling</h4>
+          <p>High-powered hydraulic rigs drill through soft soil and granite formations using 4½" or 6½" industrial button bits.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">03</div>
+          <h4>Casing & Filter Insertion</h4>
+          <p>Heavy-duty Class-D casing and slotted filter pipes are inserted into loose soil and fracture zones to seal against silt.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">04</div>
+          <h4>Motor Fitting & Testing</h4>
+          <p>Stage-matched submersible pump lowering, water yield testing (GPH), control panel connection, and complete handover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOREWELL & SERVICE BOOKING SYSTEM (THE HERO FULL-STACK FEATURE) -->
+  <section class="section booking-section" id="booking">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Full-Stack Booking System</span>
+        <h2 class="section-title">Book Your Borewell or Pumping Service</h2>
+        <p class="section-desc">Fill in your requirements below. Your booking is stored in our database with a unique ID and instantly dispatched to our engineering team on WhatsApp.</p>
+      </div>
+
+      <div class="booking-wrapper">
+        <div class="booking-header-bar">
+          <div>
+            <h3><i class="fas fa-calendar-check"></i> Service Booking Portal</h3>
+            <p>Instant Confirmation & Direct WhatsApp Dispatch</p>
+          </div>
+          <div class="booking-dispatch-badges">
+            <span class="dispatch-badge"><i class="fab fa-whatsapp"></i> Primary: +91 98807 01789</span>
+            <span class="dispatch-badge"><i class="fab fa-whatsapp"></i> Dispatch: +91 93804 10134</span>
+          </div>
+        </div>
+
+        <div class="booking-form-body">
+          <form id="booking-form" novalidate>
+            <div class="form-grid">
+              <!-- Full Name -->
+              <div class="form-group">
+                <label class="form-label" for="bk-name">Your Full Name <span class="required">*</span></label>
+                <input type="text" id="bk-name" name="name" class="form-input" placeholder="e.g. Ramesh Kumar" required />
+              </div>
+
+              <!-- Phone Number -->
+              <div class="form-group">
+                <label class="form-label" for="bk-phone">Mobile Number <span class="required">* (10 Digits)</span></label>
+                <input type="tel" id="bk-phone" name="phone" class="form-input" placeholder="e.g. 9880701789" required />
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label class="form-label" for="bk-email">Email Address <span style="color:var(--text-muted); font-weight:normal;">(Optional)</span></label>
+                <input type="email" id="bk-email" name="email" class="form-input" placeholder="e.g. customer@example.com" />
+              </div>
+
+              <!-- Location -->
+              <div class="form-group">
+                <label class="form-label" for="bk-location">Site Location / Address <span class="required">*</span></label>
+                <input type="text" id="bk-location" name="location" class="form-input" placeholder="e.g. Anjananagar, Magadi Road, Bengaluru" required />
+              </div>
+
+              <!-- Service Type -->
+              <div class="form-group">
+                <label class="form-label" for="bk-service">Required Service <span class="required">*</span></label>
+                <select id="bk-service" name="service" class="form-select" required>
+                  <option value="Borewell Drilling">Borewell Drilling (4.5" / 6.5")</option>
+                  <option value="Casing Pipe Installation">Casing Pipe Installation (PVC / MS)</option>
+                  <option value="Submersible Pump Installation">Submersible Pump Installation & Motors</option>
+                  <option value="Filter Pipe Installation">Filter Pipe Installation</option>
+                  <option value="Borewell Flushing & Cleaning">Borewell Flushing & Compressor Cleaning</option>
+                  <option value="Geological Point Survey">Groundwater Geological Survey</option>
+                </select>
+              </div>
+
+              <!-- Preferred Date -->
+              <div class="form-group">
+                <label class="form-label" for="bk-date">Preferred Work Date</label>
+                <input type="date" id="bk-date" name="preferred_date" class="form-input" />
+              </div>
+
+              <!-- Estimated Depth -->
+              <div class="form-group full-width">
+                <label class="form-label" for="bk-depth">Estimated Depth / Plot Type</label>
+                <select id="bk-depth" name="depth_feet" class="form-select">
+                  <option value="Not Sure - Need Geologist Survey">Not Sure - Need Geologist Survey First</option>
+                  <option value="300 - 500 Feet">300 to 500 Feet (Standard Residential)</option>
+                  <option value="600 - 800 Feet">600 to 800 Feet (Medium Depth)</option>
+                  <option value="1000+ Feet">1000+ Feet (Deep Ground / Agricultural)</option>
+                  <option value="Confined Urban Residential Site">Confined Urban Plot (Compact Rig)</option>
+                  <option value="Commercial / Industrial Borewell">Commercial / High Yield Industrial</option>
+                </select>
+              </div>
+
+              <!-- Additional Message -->
+              <div class="form-group full-width">
+                <label class="form-label" for="bk-message">Project Notes / Specific Requirements</label>
+                <textarea id="bk-message" name="message" class="form-textarea" placeholder="Provide any details about site access, past borewells in the area, or specific pump brands needed..."></textarea>
+              </div>
             </div>
 
-            <div class="card-body">
-              <h3>Filter Pipes</h3>
+            <div class="booking-submit-area">
+              <button type="submit" id="bk-submit-btn" class="btn btn-primary btn-block">
+                <i class="fas fa-check-circle"></i> Confirm Booking & Open WhatsApp Notification
+              </button>
+              <div class="form-disclaimer">
+                <i class="fas fa-lock"></i> Your data is saved securely in our database. We notify both dispatch lines: +91 98807 01789 & +91 93804 10134.
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-              <p>
-                Slotted PVC filter pipes installed in water-bearing zones to
-                allow clean water flow while preventing sand and fine particles
-                from entering the borewell.
-              </p>
+  <!-- CUSTOMER FEEDBACK & LIVE RATINGS (THE HIGHEST-PRIORITY FEATURE) -->
+  <section class="section feedback-section" id="feedback">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Customer Reviews</span>
+        <h2 class="section-title">Verified Customer Ratings & Feedback</h2>
+        <p class="section-desc">All reviews are stored in our live database and accessible to every visitor. Share your experience with our team.</p>
+      </div>
 
-              <a href="services.html" class="card-link">
-                Learn More <i class="fas fa-arrow-right"></i>
+      <!-- Live Dynamic Ratings Strip -->
+      <div class="feedback-stats-strip">
+        <div class="score-box">
+          <div class="big-rating-number" id="avg-rating-val">4.7</div>
+          <div class="stars-display" id="avg-stars-display">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <div class="score-count-label" id="total-reviews-count">Based on 3 customer reviews</div>
+        </div>
+
+        <!-- Breakdown Bars -->
+        <div class="breakdown-bars">
+          <div class="breakdown-row">
+            <span class="bar-star-label">5 Stars</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-5" style="width: 66%;"></div></div>
+            <span class="bar-count-label" id="bar-count-5">2</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bar-star-label">4 Stars</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-4" style="width: 33%;"></div></div>
+            <span class="bar-count-label" id="bar-count-4">1</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bar-star-label">3 Stars</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-3" style="width: 0%;"></div></div>
+            <span class="bar-count-label" id="bar-count-3">0</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bar-star-label">2 Stars</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-2" style="width: 0%;"></div></div>
+            <span class="bar-count-label" id="bar-count-2">0</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bar-star-label">1 Star</span>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill-1" style="width: 0%;"></div></div>
+            <span class="bar-count-label" id="bar-count-1">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Grid: Reviews Stream (Left) + Submission Form (Right) -->
+      <div class="feedback-grid">
+        <!-- Reviews Stream -->
+        <div class="reviews-container">
+          <div class="reviews-filter-bar">
+            <h3 style="font-size:1.15rem;"><i class="fas fa-comments"></i> Customer Reviews</h3>
+            <div class="filter-pills">
+              <button class="pill-btn active" data-filter="0">All</button>
+              <button class="pill-btn" data-filter="5">5 ⭐</button>
+              <button class="pill-btn" data-filter="4">4 ⭐</button>
+              <button class="pill-btn" data-filter="3">3 ⭐</button>
+            </div>
+          </div>
+
+          <div class="reviews-list" id="reviews-list">
+            <!-- Dynamic reviews loaded from /api/feedback.php -->
+          </div>
+        </div>
+
+        <!-- Submit Feedback Form -->
+        <div class="feedback-form-box">
+          <h3><i class="fas fa-pen-alt"></i> Leave Your Review</h3>
+          <p>Rate our service quality, speed, and team coordination.</p>
+
+          <form id="feedback-form" novalidate>
+            <!-- Reviewer Name -->
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label" for="fb-name">Your Name <span class="required">*</span></label>
+              <input type="text" id="fb-name" name="name" class="form-input" placeholder="e.g. Puneeth S" required />
+            </div>
+
+            <!-- Email (Optional) -->
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label" for="fb-email">Email / Phone <span style="font-weight:normal; color:var(--text-muted);">(Optional)</span></label>
+              <input type="text" id="fb-email" name="email" class="form-input" placeholder="e.g. name@gmail.com" />
+            </div>
+
+            <!-- Star Rating Selection -->
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label">Your Rating <span class="required">*</span></label>
+              <div class="star-selector" id="star-selector">
+                <input type="radio" id="star5" name="fb-rating" value="5" checked />
+                <label for="star5" title="5 Stars">★</label>
+                <input type="radio" id="star4" name="fb-rating" value="4" />
+                <label for="star4" title="4 Stars">★</label>
+                <input type="radio" id="star3" name="fb-rating" value="3" />
+                <label for="star3" title="3 Stars">★</label>
+                <input type="radio" id="star2" name="fb-rating" value="2" />
+                <label for="star2" title="2 Stars">★</label>
+                <input type="radio" id="star1" name="fb-rating" value="1" />
+                <label for="star1" title="1 Star">★</label>
+              </div>
+            </div>
+
+            <!-- Review Comment -->
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label" for="fb-comment">Your Feedback <span class="required">*</span></label>
+              <textarea id="fb-comment" name="comment" class="form-textarea" rows="4" placeholder="Tell us about the drilling, casing pipes, or pump fitting experience..." required></textarea>
+            </div>
+
+            <!-- Photo Upload -->
+            <div class="form-group" style="margin-bottom:20px;">
+              <label class="form-label" for="fb-photo">Attach Project Photo <span style="font-weight:normal; color:var(--text-muted);">(Optional)</span></label>
+              <input type="file" id="fb-photo" name="photo" class="form-input" accept="image/jpeg,image/png,image/webp" />
+            </div>
+
+            <button type="submit" id="fb-submit-btn" class="btn btn-primary btn-block">
+              <i class="fas fa-paper-plane"></i> Submit Feedback
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & ENQUIRY SECTION -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Get In Touch</span>
+        <h2 class="section-title">Contact Sri Anantashayana Borewells</h2>
+        <p class="section-desc">24/7 Helpline available for site inspections, quotation requests, and drilling consultations.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Quick Info Cards -->
+        <div class="contact-info-cards">
+          <div class="contact-card">
+            <div class="contact-icon-circle"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <h4>24/7 Phone Helpline</h4>
+              <p><a href="tel:+919880701789" style="font-weight:700; color:var(--primary-dark);">+91 98807 01789</a></p>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Direct line to senior engineer</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon-circle wa"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <h4>WhatsApp Dispatch Numbers</h4>
+              <p><a href="https://wa.me/919880701789" target="_blank" style="font-weight:700;">+91 98807 01789</a> (Primary)</p>
+              <p><a href="https://wa.me/919380410134" target="_blank" style="font-weight:700;">+91 93804 10134</a> (Secondary Dispatch)</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <h4>Head Office & Yard</h4>
+              <p>Anjananagar, Magadi Main Road,<br />Near Bindu Amulya Apartment, Vishwaneedam Post,<br />Bengaluru, Karnataka - 560091</p>
+              <a href="https://maps.app.goo.gl/B3EnX8a8e8juFonf7" target="_blank" class="service-action-link" style="margin-top:6px;">
+                Open in Google Maps <i class="fas fa-external-link-alt"></i>
               </a>
             </div>
           </div>
+
+          <div class="contact-card">
+            <div class="contact-icon-circle"><i class="fas fa-clock"></i></div>
+            <div>
+              <h4>Working Hours</h4>
+              <p>Monday – Sunday: Open 24 Hours</p>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Emergency compressor and pump breakdown services</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Inquiry Form -->
+        <div class="contact-form-box">
+          <h3>Quick Project Enquiry</h3>
+          <p>Send an immediate message to our engineering desk:</p>
+
+          <form id="contact-form" novalidate>
+            <div class="form-group" style="margin-bottom:14px;">
+              <label class="form-label" for="ct-name">Name <span class="required">*</span></label>
+              <input type="text" id="ct-name" class="form-input" placeholder="Your Full Name" required />
+            </div>
+
+            <div class="form-group" style="margin-bottom:14px;">
+              <label class="form-label" for="ct-phone">Mobile Number <span class="required">*</span></label>
+              <input type="tel" id="ct-phone" class="form-input" placeholder="10-digit mobile number" required />
+            </div>
+
+            <div class="form-group" style="margin-bottom:14px;">
+              <label class="form-label" for="ct-location">Location / Area</label>
+              <input type="text" id="ct-location" class="form-input" placeholder="e.g. Kengeri, Bengaluru" />
+            </div>
+
+            <div class="form-group" style="margin-bottom:14px;">
+              <label class="form-label" for="ct-service">Service Required</label>
+              <select id="ct-service" class="form-select">
+                <option value="Borewell Drilling">Borewell Drilling</option>
+                <option value="Casing Pipe Installation">Casing Pipe Installation</option>
+                <option value="Submersible Pump Installation">Pump Installation & Repair</option>
+                <option value="Filter Pipe Installation">Filter Pipes</option>
+                <option value="Borewell Flushing">Compressor Flushing</option>
+                <option value="General Enquiry">General Consultation</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom:20px;">
+              <label class="form-label" for="ct-message">Your Requirement <span class="required">*</span></label>
+              <textarea id="ct-message" class="form-textarea" rows="4" placeholder="Describe depth requirements, site soil conditions, or required service..." required></textarea>
+            </div>
+
+            <button type="submit" id="ct-submit-btn" class="btn btn-primary btn-block">
+              <i class="fab fa-whatsapp"></i> Submit & Open WhatsApp
+            </button>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- WHY CHOOSE US -->
-    <section class="section why-us">
-      <div class="container">
-        <div class="section-label light">Our Advantage</div>
-        <h2 class="section-title light">Why Choose Us?</h2>
-        <div class="why-grid">
-          <div class="why-box reveal-up">
-            <i class="fas fa-medal"></i><span>25+ Years Experience</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.05s">
-            <i class="fas fa-cogs"></i><span>Modern Drilling Equipment</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.1s">
-            <i class="fas fa-tags"></i><span>Affordable Pricing</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.15s">
-            <i class="fas fa-users"></i><span>Skilled Team</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.2s">
-            <i class="fas fa-bolt"></i><span>Fast Service</span>
-          </div>
-          <div class="why-box reveal-up" style="animation-delay: 0.25s">
-            <i class="fas fa-map-marked-alt"></i
-            ><span>Service Across Karnataka</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT PREVIEW -->
-    <section class="section about-preview">
-      <div class="container about-grid">
-        <div class="about-image reveal-left">
-          <img
-            src="establish.png"
-            width="100"
-            height="300"
-            alt="About Borewell Company"
-          />
-          <div class="about-badge"><span>Est.</span><strong>2000</strong></div>
-        </div>
-        <div class="about-text reveal-right">
-          <div class="section-label">Who We Are</div>
-          <h2 class="section-title">
-            About Sri Anantashayana Borewells & Pumps
-          </h2>
-          <p>
-            Sri Anantashayana Borewells & Pumps has been serving customers for
-            over 25 years with complete groundwater solutions. Our process
-            begins with identifying suitable borewell points through experienced
-            geologists, followed by professional drilling, casing pipe
-            installation and motor fitting to ensure a dependable water source
-            for years to come.
-          </p>
-          <ul class="about-list">
-            <li>
-              <i class="fas fa-check-circle"></i> Geologist-Assisted Borewell
-              Point Identification
-            </li>
-            <li>
-              <i class="fas fa-check-circle"></i> Borewell Drilling, Casing
-              Pipe, Filter Pipe & Motor Installation
-            </li>
-            <li>
-              <i class="fas fa-check-circle"></i> Residential, Agricultural,
-              Commercial & Industrial Projects
-            </li>
-          </ul>
-          <a href="about.html" class="btn btn-primary">Read More</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECT GALLERY -->
-    <section class="section gallery-preview">
-      <div class="container">
-        <div class="section-label">Our Work</div>
-        <h2 class="section-title">Recent Projects</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item reveal-up">
-            <img src="project1.jpeg" alt="Project" />
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item reveal-up" style="animation-delay: 0.1s">
-            <img src="project 2.png" alt="Project" />
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-          <div class="gallery-item reveal-up" style="animation-delay: 0.2s">
-            <img src="residential.jfif" alt="Project" />
-            <div class="gallery-overlay"><span>View Project</span></div>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: 36px">
-          <a href="gallery.html" class="btn btn-outline-dark"
-            >View All Projects</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="cta-inner">
-        <div class="cta-text">
-          <h2>Looking For A Reliable Borewell Solution?</h2>
-          <p>
-            Book a consultation today for geologist-guided borewell point
-            marking, professional drilling and complete pump installation
-            services.
-          </p>
-        </div>
-        <a href="tel:+919880701789" class="btn btn-white"
-          ><i class="fas fa-phone"></i> Call 98807 01789</a
-        >
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-inner">
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
         <div class="footer-brand">
-          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
-          <h3>Sri Anantashayana Borewells & Pumps</h3>
-          <p>
-            Complete borewell solutions including geological point
-            identification, borewell drilling, casing pipe installation and
-            submersible motor fitting across Bengaluru and Karnataka.
-          </p>
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+            <img src="logo.jpeg" alt="HYDROWELL" style="width:40px; height:40px; border-radius:6px;" />
+            <h3 style="margin:0;">HYDROWELL</h3>
+          </div>
+          <p>Sri Anantashayana Borewells & Pumps has provided certified borewell drilling, casing pipe fitting, filter screens, and submersible pump installation across Bengaluru and Karnataka for over 25 years.</p>
+          <div style="display:flex; gap:10px;">
+            <a href="tel:+919880701789" class="btn btn-secondary btn-sm"><i class="fas fa-phone-alt"></i> Call</a>
+            <a href="https://wa.me/919880701789" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
         </div>
-        <nav>
-          <ul id="nav-menu">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="contact.html">Contact</a></li>
-<li>
-              <a href="ratings.html">
-                Ratings <span class="rating-badge">⭐ 4.9/5</span>
-              </a>
-            </li>        
-            <!-- Chat Icon -->
-<div class="chat-icon" onclick="toggleBot()">
-    🤖
-</div>
 
-<!-- Chatbot -->
-<div class="bot-box" id="botBox">
-    <h3>Ask About Borewell</h3>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <div class="footer-links">
+            <a href="#hero">Home</a>
+            <a href="about.html">About HYDROWELL</a>
+            <a href="services.html">All Services</a>
+            <a href="#process">4-Step Process</a>
+            <a href="#booking">Book a Service</a>
+            <a href="ratings.html">Customer Reviews</a>
+            <a href="gallery.html">Project Gallery</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
 
-    <button onclick="showAnswer(1)">1. Borewell drilling cost?</button>
-    <button onclick="showAnswer(2)">2. Pump installation charges?</button>
-    <button onclick="showAnswer(3)">3. Service areas?</button>
-    <button onclick="showAnswer(4)">4. 24/7 service?</button>
-    <button onclick="showAnswer(5)">5. How deep do you drill?</button>
-    <button onclick="showAnswer(6)">6. Do you provide casing pipes?</button>
-    <button onclick="showAnswer(7)">7. Which pumps do you install?</button>
-    <button onclick="showAnswer(8)">8. How long does drilling take?</button>
-    <button onclick="showAnswer(9)">9. Water guarantee available?</button>
-    <button onclick="showAnswer(10)">10. Contact number?</button>
-
-    <div id="answer-box"></div>
-</div>
-
-
-          </ul>
-        </nav>
         <div class="footer-col">
           <h4>Our Services</h4>
-          <ul>
-            <li><a href="services.html">Borewell Drilling</a></li>
-            <li><a href="services.html">Casing Pipe Installation</a></li>
-            <li><a href="services.html">Pump Installation</a></li>
-            <li><a href="services.html">Pump Maintenance</a></li>
-            <li><a href="services.html">Agricultural Borewells</a></li>
-          </ul>
+          <div class="footer-links">
+            <a href="services.html">Borewell Drilling</a>
+            <a href="services.html">Casing Pipe Installation</a>
+            <a href="services.html">Submersible Pump Fitting</a>
+            <a href="services.html">Slotted Filter Pipes</a>
+            <a href="services.html">Compressor Flushing</a>
+            <a href="services.html">Geological Point Survey</a>
+          </div>
         </div>
-        
-        <div class="footer-col">
-          <h4>Contact Information</h4>
-          <p><i class="fas fa-phone"></i> +91 9880701789</p>
-          <p><i class="fab fa-whatsapp"></i> +91 9880701789</p>
-          <p>
-            <i class="fas fa-map-marker-alt"></i> Anjananagar, Magadi Main Road,
-            Near Bindu Amulya Apartment, Vishwaneedam Post, Bengaluru - 560091
-          </p>
-          <p><i class="fas fa-clock"></i> Open 24 Hours</p>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>© 2026 Sri Anantashayana Borewells & Pumps. All Rights Reserved.</p>
-      </div>
-    </footer>
 
-    <!-- WHATSAPP -->
-    <a
-      class="whatsapp"
-      href="https://wa.me/919880701789"
-      target="_blank"
-      aria-label="WhatsApp"
-    >
+        <div class="footer-col">
+          <h4>Office & Dispatch</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+              <strong>Primary Phone:</strong><br />
+              <a href="tel:+919880701789" style="color:#f1f5f9;">+91 98807 01789</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+              <strong>WhatsApp Dispatches:</strong><br />
+              <a href="https://wa.me/919880701789" target="_blank" style="color:#f1f5f9;">+91 98807 01789</a><br />
+              <a href="https://wa.me/919380410134" target="_blank" style="color:#f1f5f9;">+91 93804 10134</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              Anjananagar, Magadi Main Road, Bengaluru - 560091
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2000–2026 Sri Anantashayana Borewells & Pumps (HYDROWELL). All Rights Reserved.
+        </div>
+        <div style="display:flex; gap:18px;">
+          <a href="#booking" style="color:#38bdf8;">Book Online</a>
+          <a href="tel:+919880701789" style="color:#38bdf8;">24/7 Helpline</a>
+          <a href="ratings.html" style="color:#38bdf8;">Customer Reviews</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="floating-actions">
+    <!-- WhatsApp Floating Action -->
+    <a href="https://wa.me/919880701789" target="_blank" class="fab-btn fab-whatsapp" aria-label="WhatsApp Dispatch">
       <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- CALL BUTTON -->
-    <a class="call-btn" href="tel:+919880701789" aria-label="Call Us">
-      <i class="fas fa-phone"></i>
+    <!-- Direct Call Action -->
+    <a href="tel:+919880701789" class="fab-btn fab-call" aria-label="Call Helpline">
+      <i class="fas fa-phone-alt"></i>
     </a>
 
-    <!-- GOOGLE MAPS BUTTON -->
-    <a
-      class="maps-btn"
-      href="https://maps.app.goo.gl/B3EnX8a8e8juFonf7"
-      target="_blank"
-      aria-label="Find Us"
-    >
-      <i class="fas fa-location-dot"></i>
-    </a>
+    <!-- Interactive FAQ Chatbot Button -->
+    <button class="fab-btn fab-bot" id="chatbotTrigger" aria-label="Borewell Assistant">
+      🤖
+    </button>
+  </div>
 
-    <script>
-      // Hamburger menu
-      const hamburger = document.getElementById("hamburger");
-      const navMenu = document.getElementById("nav-menu");
-      hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("open");
-        navMenu.classList.toggle("open");
-      });
+  <!-- INTERACTIVE CHATBOT DRAWER -->
+  <div class="chatbot-box" id="chatbotBox" role="dialog" aria-labelledby="chatHeading">
+    <div class="chatbot-header">
+      <h4 id="chatHeading">🤖 Ask About Borewells & Pumps</h4>
+      <button class="chatbot-close-btn" id="chatbotClose" aria-label="Close Chatbot">&times;</button>
+    </div>
+    <div class="chatbot-body" id="chatbotBody">
+      <p class="chatbot-intro">Tap any frequent question for an immediate answer from our engineering team:</p>
+      <div class="chatbot-questions">
+        <button class="faq-btn" onclick="showFaqAnswer(1)">1. Borewell drilling cost?</button>
+        <button class="faq-btn" onclick="showFaqAnswer(2)">2. Pump installation charges?</button>
+        <button class="faq-btn" onclick="showFaqAnswer(3)">3. Service areas in Karnataka?</button>
+        <button class="faq-btn" onclick="showFaqAnswer(4)">4. 24/7 emergency service?</button>
+        <button class="faq-btn" onclick="showFaqAnswer(5)">5. How deep do you drill?</button>
+        <button class="faq-btn" onclick="showFaqAnswer(6)">6. Do you provide casing pipes?</button>
+        <button class="faq-btn" onclick="showFaqAnswer(7)">7. Which pumps do you install?</button>
+        <button class="faq-btn" onclick="showFaqAnswer(8)">8. How long does drilling take?</button>
+        <button class="faq-btn" onclick="showFaqAnswer(9)">9. Is water guarantee available?</button>
+        <button class="faq-btn" onclick="showFaqAnswer(10)">10. What is your contact number?</button>
+      </div>
+      <div class="chatbot-answer-area" id="chatbotAnswerBox"></div>
+    </div>
+  </div>
 
-      // Sticky header shadow
-      window.addEventListener("scroll", () => {
-        const header = document.getElementById("main-header");
-        header.classList.toggle("scrolled", window.scrollY > 50);
-      });
+  <!-- APPLICATION JAVASCRIPT -->
+  <script src="main.js"></script>
 
-      // Scroll reveal
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("in-view");
-            }
-          });
-        },
-        { threshold: 0.12 },
-      );
-      document
-        .querySelectorAll(".reveal, .reveal-up, .reveal-left, .reveal-right")
-        .forEach((el) => observer.observe(el));
-    </script>
-  </body>
+  <!-- Google Translate Integration -->
   <script>
-
-  
-    function toggleBot() {
-    const bot = document.getElementById("botBox");
-
-    if (bot.style.display === "block") {
-        bot.style.display = "none";
-    } else {
-        bot.style.display = "block";
-    }
-}
-
-function showAnswer(num) {
-    let answer = "";
-
-    switch(num) {
-        case 1:
-            answer = "Borewell drilling cost depends on depth, soil condition, and location.";
-            break;
-        case 2:
-            answer = "Pump installation charges depend on motor type and borewell depth.";
-            break;
-        case 3:
-            answer = "We serve Karnataka, Tamil Nadu, and nearby areas.";
-            break;
-        case 4:
-            answer = "Yes, we provide 24/7 borewell service support.";
-            break;
-        case 5:
-            answer = "We drill from 100 feet to 1500+ feet based on requirement.";
-            break;
-        case 6:
-            answer = "Yes, we provide PVC and HDPE casing pipes.";
-            break;
-        case 7:
-            answer = "We install submersible, compressor, and motor pumps.";
-            break;
-        case 8:
-            answer = "Drilling usually takes 1–2 days depending on depth.";
-            break;
-        case 9:
-            answer = "Water availability depends on underground geology.";
-            break;
-        case 10:
-            answer = "Call us at +91 98807 01789.";
-            break;
-    }
-
-    document.getElementById("answer-box").innerHTML = answer;
-    let botBox = document.getElementById("botBox");
-botBox.scrollTop = botBox.scrollHeight;
-}
-    </script>
-    <script>
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-        {
-            pageLanguage: 'en',
-            includedLanguages: 'en,kn,hi,te,ta,ml'
-        },
-        'google_translate_element'
-    );
-}
-
-document.getElementById("languageSelector").addEventListener("change", function () {
-    var lang = this.value;
-    var combo = document.querySelector(".goog-te-combo");
-
-    if (combo) {
-        combo.value = lang;
-        combo.dispatchEvent(new Event("change"));
-    }
-});
-</script>
-
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script>
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: 'en,kn,hi,ta,te,ml',
+        includedLanguages: 'en,kn,hi,te,ta,ml',
         autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
+      }, 'google_translate_element');
+    }
 
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  
+    const langSelector = document.getElementById("languageSelector");
+    if (langSelector) {
+      langSelector.addEventListener("change", function () {
+        const lang = this.value;
+        const combo = document.querySelector(".goog-te-combo");
+        if (combo) {
+          combo.value = lang;
+          combo.dispatchEvent(new Event("change"));
+        }
+      });
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
