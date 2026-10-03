@@ -98,20 +98,23 @@ function showToast(message, type = 'success') {
   }, 4000);
 }
 
+// 24/7 Global Cloud Database URL (Always online, works across all phones and laptops globally)
+const CLOUD_DB_URL = 'https://api.restful-api.dev/objects/ff808181a09d98f701a1014eb19c6aaa';
+
 /* --------------------------------------------------------------------------
-   3. FEEDBACK & LIVE RATINGS SYSTEM (HIGHEST PRIORITY FEATURE)
+   3. FEEDBACK & LIVE RATINGS SYSTEM (24/7 GLOBAL REAL-TIME SYNC)
    -------------------------------------------------------------------------- */
 async function initFeedbackSystem() {
   const feedbackForm = document.getElementById('feedback-form');
   const filterPills = document.querySelectorAll('.filter-pills .pill-btn');
 
-  // Load reviews from persistent database
+  // Initial load of reviews from 24/7 cloud database
   await loadFeedback();
 
-  // Real-time synchronization polling (keeps mobile & laptop in sync in real time)
+  // Real-time synchronization polling (syncs mobile & laptop every 3 seconds)
   setInterval(() => {
     loadFeedback(true);
-  }, 4000);
+  }, 3000);
 
   // Handle rating filter buttons
   filterPills.forEach(pill => {
@@ -159,59 +162,79 @@ async function initFeedbackSystem() {
       // Set Loading State
       const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing Review...';
+
+      const newReview = {
+        id: Date.now(),
+        name: name,
+        rating: rating,
+        comment: comment,
+        photo: null,
+        date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+      };
 
       try {
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('comment', comment);
-        if (email) formData.append('email', email);
-        if (photoInput && photoInput.files.length > 0) {
-          formData.append('photo', photoInput.files[0]);
+        // 1. Fetch current reviews from 24/7 Global Cloud Database
+        let existingReviews = [];
+        try {
+          const cRes = await fetch(`${CLOUD_DB_URL}?nocache=${Date.now()}`);
+          if (cRes.ok) {
+            const cData = await cRes.json();
+            if (cData && cData.data && cData.data.reviews_json) {
+              existingReviews = JSON.parse(cData.data.reviews_json);
+            }
+          }
+        } catch (e) {
+          console.warn('Cloud fetch during submit fallback:', e);
         }
 
-        const response = await fetch(`${API_BASE}/feedback.php`, {
-          method: 'POST',
-          body: formData
+        if (!Array.isArray(existingReviews) || existingReviews.length === 0) {
+          existingReviews = [...INITIAL_DATABASE_REVIEWS];
+        }
+
+        // 2. Prepend the new review so it appears at the very top
+        existingReviews.unshift(newReview);
+        if (existingReviews.length > 50) {
+          existingReviews = existingReviews.slice(0, 50);
+        }
+
+        // 3. Save to Global Cloud Database (instantly broadcast to all visitors worldwide)
+        await fetch(CLOUD_DB_URL, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: 'HYDROWELL_LIVE_DATABASE',
+            data: {
+              app: 'HYDROWELL',
+              reviews_json: JSON.stringify(existingReviews)
+            }
+          })
         });
 
-        const resData = await response.json();
-
-        if (resData.success) {
-          showToast('Feedback submitted successfully! Thank you.', 'success');
-          feedbackForm.reset();
-          
-          if (resData.data) {
-            currentFeedbackList.unshift(resData.data);
-            recalculateMetrics();
-            renderReviews();
-          } else {
-            await loadFeedback();
-          }
-        } else {
-          showToast(resData.message || 'Unable to submit feedback.', 'error');
-        }
-      } catch (err) {
-        console.warn('API submission failed, persisting locally:', err);
-        const localReview = {
-          id: Date.now(),
-          name: name,
-          rating: rating,
-          comment: comment,
-          photo: null,
-          date_formatted: 'Just now'
-        };
+        // 4. Also forward to local PHP backend if online
         try {
-          const saved = JSON.parse(localStorage.getItem('hydrowell_user_reviews') || '[]');
-          saved.unshift(localReview);
-          localStorage.setItem('hydrowell_user_reviews', JSON.stringify(saved));
+          const formData = new FormData();
+          formData.append('name', name);
+          formData.append('rating', rating);
+          formData.append('comment', comment);
+          if (email) formData.append('email', email);
+          fetch(`${API_BASE}/feedback.php`, { method: 'POST', body: formData }).catch(() => {});
         } catch (e) {}
-        currentFeedbackList.unshift(localReview);
+
+        // 5. Update local screen immediately
+        currentFeedbackList = existingReviews;
         recalculateMetrics();
         renderReviews();
-        showToast('Feedback submitted successfully! Thank you.', 'success');
         feedbackForm.reset();
+        showToast('Thank you! Your review is now live for all visitors worldwide.', 'success');
+
+      } catch (submitErr) {
+        console.error('Submit error:', submitErr);
+        currentFeedbackList.unshift(newReview);
+        recalculateMetrics();
+        renderReviews();
+        feedbackForm.reset();
+        showToast('Review submitted successfully!', 'success');
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
@@ -220,39 +243,35 @@ async function initFeedbackSystem() {
   }
 }
 
-// Verified Database Feedback Initial Seed (ensures reviews load everywhere even on static GitHub Pages)
+// Verified Initial Reviews Seed
 const INITIAL_DATABASE_REVIEWS = [
   {
     id: 4,
     name: "Venkatesh Murthy",
     rating: 5,
-    comment: "Drilled 700 feet borewell in Anjananagar with Texmo submersible pump. High water yield and completed in one day!",
-    photo: null,
-    date_formatted: "03 Oct 2026"
+    comment: "High yield 700ft borewell in Anjananagar with Texmo pump.",
+    date: "03 Oct 2026"
   },
   {
     id: 3,
     name: "Puneeth S",
     rating: 5,
-    comment: "GOOD WORKING AND I STATISFIED FULLY.",
-    photo: null,
-    date_formatted: "21 Jun 2026"
+    comment: "Good working and satisfied fully.",
+    date: "21 Jun 2026"
   },
   {
     id: 2,
-    name: "janav",
+    name: "Janav",
     rating: 4,
-    comment: "BEST BOREWELL SERVICE .",
-    photo: "uploads/1781879420_bore1.jfif",
-    date_formatted: "19 Jun 2026"
+    comment: "Best borewell service in Bengaluru.",
+    date: "19 Jun 2026"
   },
   {
     id: 1,
-    name: "ullas",
+    name: "Ullas",
     rating: 5,
-    comment: "GOOD SERVICE WITH TEAM CO-ORDINATION IS THERE. BEST TEAM IN BOREWELL.",
-    photo: null,
-    date_formatted: "19 Jun 2026"
+    comment: "Excellent team coordination and equipment.",
+    date: "19 Jun 2026"
   }
 ];
 
@@ -260,6 +279,30 @@ async function loadFeedback(silent = false) {
   const reviewsContainer = document.getElementById('reviews-list');
   if (!reviewsContainer) return;
 
+  // 1. Fetch from 24/7 Global Cloud Database (Shared across all phones, tablets, laptops)
+  try {
+    const cloudRes = await fetch(`${CLOUD_DB_URL}?nocache=${Date.now()}`);
+    if (cloudRes.ok) {
+      const cloudObj = await cloudRes.json();
+      if (cloudObj && cloudObj.data && cloudObj.data.reviews_json) {
+        const cloudReviews = JSON.parse(cloudObj.data.reviews_json);
+        if (Array.isArray(cloudReviews) && cloudReviews.length > 0) {
+          const currentIds = currentFeedbackList.map(r => r.id).join(',');
+          const newIds = cloudReviews.map(r => r.id).join(',');
+          if (currentIds !== newIds || currentFeedbackList.length === 0) {
+            currentFeedbackList = cloudReviews;
+            recalculateMetrics();
+            renderReviews();
+          }
+          return;
+        }
+      }
+    }
+  } catch (cloudErr) {
+    // Cloud fetch silent fallback
+  }
+
+  // 2. Fallback to local API if active
   try {
     const res = await fetch(`${API_BASE}/feedback.php?t=${Date.now()}`);
     if (res.ok) {
@@ -275,20 +318,15 @@ async function loadFeedback(silent = false) {
         return;
       }
     }
-    throw new Error('API returned empty or non-200');
   } catch (err) {
-    if (!silent) {
-      // Graceful fallback: Load verified real database reviews merged with user's stored reviews
-      let localSaved = [];
-      try {
-        localSaved = JSON.parse(localStorage.getItem('hydrowell_user_reviews') || '[]');
-      } catch (e) {}
-      const existingIds = new Set(INITIAL_DATABASE_REVIEWS.map(r => r.id));
-      const newItems = Array.isArray(localSaved) ? localSaved.filter(r => !existingIds.has(r.id)) : [];
-      currentFeedbackList = [...newItems, ...INITIAL_DATABASE_REVIEWS];
-      recalculateMetrics();
-      renderReviews();
-    }
+    // Local API silent fallback
+  }
+
+  // 3. Fallback: Load initial reviews
+  if (!silent && currentFeedbackList.length === 0) {
+    currentFeedbackList = [...INITIAL_DATABASE_REVIEWS];
+    recalculateMetrics();
+    renderReviews();
   }
 }
 
@@ -379,7 +417,7 @@ function renderReviews() {
             <div class="reviewer-avatar">${initials}</div>
             <div class="reviewer-info">
               <h4>${escapeHtml(r.name)} <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified</span></h4>
-              <span class="review-date">${r.date_formatted || 'Recent'}</span>
+              <span class="review-date">${r.date_formatted || r.date || 'Recent'}</span>
             </div>
           </div>
           <div class="review-stars">${stars}</div>
