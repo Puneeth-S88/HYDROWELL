@@ -1521,6 +1521,14 @@ p {
   transform: scale(1.1);
 }
 
+.fab-map {
+  background-color: #ea4335;
+}
+
+.fab-map:hover {
+  background-color: #d93025;
+}
+
 .fab-whatsapp {
   background-color: #25d366;
 }
@@ -1883,11 +1891,18 @@ p {
   }
   .floating-actions {
     bottom: 16px;
-    right: 16px;
+    right: 14px;
+    gap: 10px;
   }
   .fab-btn {
     width: 46px;
     height: 46px;
     font-size: 1.15rem;
+  }
+  .chatbot-box {
+    right: 12px;
+    bottom: 70px;
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
   }
 }
